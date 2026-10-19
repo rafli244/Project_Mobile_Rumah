@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="btn_Login">#FFFFFFFF</color>
+    <color name="bg">#FFFFFFFF</color>
+    <color name="centang">#FFFFFFFF</color>
+
+    <!-- SiComplaint Brand Colors (Grand Design Slide 03) -->
+    <color name="primary">#E53935</color>
+    <color name="primary_dark">#B71C1C</color>
+    <color name="primary_soft">#FDECEA</color>
+    <color name="background_app">#FAF7F6</color>
+    <color name="text_dark">#1F2937</color>
+    <color name="gray_text">#6B7280</color>
+    <color name="gray_border">#E5E7EB</color>
+
+    <!-- Status Colors -->
+    <color name="status_menunggu">#F59E0B</color>
+    <color name="status_dalam_proses">#2563EB</color>
+    <color name="status_selesai">#2E7D32</color>
+    <color name="status_ditolak">#991B1B</color>
+
+    <!-- Legacy / Compatibility Aliases -->
+    <color name="merah_utama">#E53935</color>
+    <color name="biru_utama">#2563EB</color>
+    <color name="bg_abu">#FAF7F6</color>
+</resources>

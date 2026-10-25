@@ -1,0 +1,23 @@
+{
+  "tests": [
+    {
+      "file": "app\\build\\test-results\\testDebugUnitTest\\TEST-com.example.rafli_3tia.ExampleUnitTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "file": "app\\build\\outputs\\androidTest-results\\connected\\debug\\TEST-Pixel_6(AVD) - 13-_app-.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "lint": {
+    "Warning": 220
+  },
+  "logoPathsMatch": true,
+  "bottomMenuCount": 4,
+  "apkBytes": 17324086,
+  "apkSha256": "93ff3e2ea821a83f80e6d7b3d8c0d8d42b86b14f87d1538802fd5a925e248bec"
+}

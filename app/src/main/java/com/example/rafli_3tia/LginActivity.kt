@@ -1,11 +1,26 @@
 package com.example.rafli_3tia
 
+/*
+ * =====================================================================================
+ * FORM LOGIN, CARDVIEW, TOAST, & SIMPAN SHARED PREFERENCES
+ * =====================================================================================
+ * Materi  : Pertemuan 2, 3, & 6
+ * Konsep  :
+ *   1. ViewBinding: ActivityLginBinding.inflate(layoutInflater) -> setContentView(binding.root).
+ *   2. Validasi input: Cek editText.text.toString().trim() tidak boleh kosong.
+ *   3. Toast feedback: Toast.makeText(this, "Pesan...", Toast.LENGTH_SHORT).show().
+ *   4. Simpan Sesi: getSharedPreferences("USER_SESSION", MODE_PRIVATE).edit().putBoolean("isLogin", true).
+ *   5. Pindah Halaman: startActivity(Intent(this, MainActivity::class.java)) + finish().
+ * =====================================================================================
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -38,31 +53,26 @@ class LginActivity : AppCompatActivity() {
 
         val remembered = getSharedPreferences("LOGIN_PREFERENCES", MODE_PRIVATE)
         binding.checkBox.isChecked = remembered.getBoolean("remember", false)
-        if (binding.checkBox.isChecked) binding.editTextText.setText(remembered.getString("username", ""))
+        if (binding.checkBox.isChecked) {
+            binding.editTextText.setText(remembered.getString("username", ""))
+        }
+
         binding.tvLupaPassword.setOnClickListener {
-            androidx.appcompat.app.AlertDialog.Builder(this).setTitle("Bantuan akun demo")
-                .setMessage("Akun demo: rafli / 12345 atau admin / admin123.").setPositiveButton("Tutup", null).show()
+            AlertDialog.Builder(this)
+                .setTitle("Bantuan Akun Demo")
+                .setMessage("Silakan gunakan akun demo:\n• Username: rafli | Password: 12345\n• Username: admin | Password: admin123")
+                .setPositiveButton("Tutup", null)
+                .show()
         }
+
         binding.tvDaftar.setOnClickListener {
-            val form = com.example.rafli_3tia.databinding.DialogRegisterBinding.inflate(layoutInflater)
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(this).setTitle("Daftar Akun")
-                .setMessage("Buat akun lokal untuk melaporkan masalah di sekitar Anda.")
-                .setView(form.root).setNegativeButton("Batal", null).setPositiveButton("Daftar", null).create()
-            dialog.setOnShowListener {
-                dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                    val user = form.etUsernameDaftar.text.toString().trim()
-                    val error = AkunRepository(this).daftar(form.etNamaDaftar.text.toString(), user, form.etPasswordDaftar.text.toString())
-                    if (error != null) form.etUsernameDaftar.error = error
-                    else {
-                        binding.editTextText.setText(user)
-                        binding.editTextTextPassword.text?.clear()
-                        Toast.makeText(this, "Akun berhasil dibuat. Silakan masuk.", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    }
-                }
-            }
-            dialog.show()
+            AlertDialog.Builder(this)
+                .setTitle("Panduan Akun")
+                .setMessage("Sesuai aturan praktikum:\nAnda dapat langsung login dengan password yang sama persis dengan username (misal: user / user),\natau gunakan akun demo: rafli / 12345.")
+                .setPositiveButton("Mengerti", null)
+                .show()
         }
+
         binding.btnLogin.setOnClickListener {
             val usernameInput = binding.editTextText.text.toString().trim()
             val passwordInput = binding.editTextTextPassword.text.toString().trim()
@@ -86,13 +96,15 @@ class LginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // 2. Logika Verifikasi Kredensial
+            // 2. Logika Verifikasi Kredensial (Akun Demo + Aturan Modul: username == password)
             val isRafliValid = usernameInput.equals("rafli", ignoreCase = true) && passwordInput == "12345"
             val isAdminValid = usernameInput.equals("admin", ignoreCase = true) && passwordInput == "admin123"
+            val isMatching = usernameInput == passwordInput
 
-            if (isRafliValid || isAdminValid || AkunRepository(this).valid(usernameInput, passwordInput)) {
+            if (isRafliValid || isAdminValid || isMatching) {
                 remembered.edit().putBoolean("remember", binding.checkBox.isChecked)
                     .putString("username", if (binding.checkBox.isChecked) usernameInput else "").apply()
+
                 // 3. Simpan Sesi ke SharedPreferences
                 val sharedPreferences = getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
                 with(sharedPreferences.edit()) {

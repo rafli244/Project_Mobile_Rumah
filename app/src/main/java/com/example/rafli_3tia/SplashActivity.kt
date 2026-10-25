@@ -1,5 +1,19 @@
 package com.example.rafli_3tia
 
+/*
+ * =====================================================================================
+ * SPLASH SCREEN & AUTO-LOGIN (SHARED PREFERENCES)
+ * =====================================================================================
+ * Materi  : Pertemuan 4 & 6
+ * Konsep  :
+ *   1. Handler/Coroutine delay 2000ms (2 detik).
+ *   2. Membaca "isLogin" dari SharedPreferences "USER_SESSION".
+ *   3. Jika isLogin == true -> Langsung ke MainActivity.
+ *   4. Jika isLogin == false -> Masuk ke LginActivity.
+ *   5. finish() agar pengguna tidak bisa kembali ke Splash saat menekan tombol Back.
+ * =====================================================================================
+ */
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent

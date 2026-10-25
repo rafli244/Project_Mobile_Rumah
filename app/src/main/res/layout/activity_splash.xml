@@ -1,1 +1,60 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/splashMain" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/primary"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="center" android:orientation="vertical" android:gravity="center" android:padding="32dp"><ImageView android:id="@+id/ivSplashLogo" android:layout_width="80dp" android:layout_height="104dp" android:src="@drawable/ic_sicomplaint_white" android:contentDescription="Logo asli SiComplaint"/><Space android:layout_width="1dp" android:layout_height="16dp"/><TextView android:id="@+id/tvSplashAppName" style="@style/Text.SiComplaint.Heading" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="SiComplaint" android:textSize="32sp" android:gravity="center" android:fontFamily="@font/poppins_bold" android:textColor="@color/white"/><TextView android:id="@+id/tvSplashTagline" style="@style/Text.SiComplaint.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lapor Cepat, Kota Berubah" android:textSize="13sp" android:gravity="center" android:textColor="@color/white"/><ProgressBar android:id="@+id/progressBarSplash" android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="center" android:layout_marginTop="24dp" android:indeterminateTint="@color/white"/></LinearLayout><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom" android:layout_marginBottom="24dp" android:gravity="center" android:text="Rafli Hanafi • 3TIA" android:textSize="11sp" android:textColor="#FFEAEA"/></FrameLayout>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/splashMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+        <ImageView
+            android:id="@+id/ivSplashLogo"
+            android:layout_width="80dp"
+            android:layout_height="104dp"
+            android:src="@drawable/ic_sicomplaint_white"
+            android:contentDescription="Logo asli SiComplaint" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="16dp" />
+        <TextView
+            android:id="@+id/tvSplashAppName"
+            style="@style/Text.SiComplaint.Heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SiComplaint"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/tvSplashTagline"
+            style="@style/Text.SiComplaint.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lapor Cepat, Kota Berubah"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:textColor="@color/white" />
+        <ProgressBar
+            android:id="@+id/progressBarSplash"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:indeterminateTint="@color/white" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="Rafli Hanafi • 3TIA"
+        android:textSize="11sp"
+        android:textColor="#FFEAEA" />
+</FrameLayout>

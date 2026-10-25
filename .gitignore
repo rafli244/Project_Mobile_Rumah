@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.zip
+/dokumen2/
+/.idea/markdown.xml

@@ -1,5 +1,19 @@
 package com.example.rafli_3tia
 
+/*
+ * =====================================================================================
+ * BOTTOM NAVIGATION, FRAGMENT TRANSACTIONS, & ALERTDIALOG LOGOUT
+ * =====================================================================================
+ * Materi  : Pertemuan 5, 6, & 7
+ * Konsep  :
+ *   1. BottomNavigationView: setOnItemSelectedListener { when (it.itemId) { ... } }.
+ *   2. Fragment Host: Menampilkan Fragment di FrameLayout/FragmentContainerView.
+ *   3. AlertDialog Logout: AlertDialog.Builder(this).setTitle(...).setPositiveButton("Ya") { ... }
+ *      -> Bersihkan sesi: getSharedPreferences("USER_SESSION", ...).edit().clear().apply()
+ *      -> Kembali ke Login: startActivity(Intent(this, LginActivity::class.java)) + finish().
+ * =====================================================================================
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,15 +31,22 @@ import com.example.rafli_3tia.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var showingForm = false
-    val username: String get() = getSharedPreferences("USER_SESSION", MODE_PRIVATE).getString("USERNAME", "Warga") ?: "Warga"
-    val account: AkunRepository get() = AkunRepository(this)
+    val username: String
+        get() = intent.getStringExtra("EXTRA_USERNAME")?.takeIf { it.isNotBlank() }
+            ?: getSharedPreferences("USER_SESSION", MODE_PRIVATE)
+                .getString("USERNAME", "Warga")?.takeIf { it.isNotBlank() }
+            ?: "Warga"
     private val backForm = object : OnBackPressedCallback(false) {
-        override fun handleOnBackPressed() { showTab(binding.bottomNavigation.selectedItemId) }
+        override fun handleOnBackPressed() {
+            showTab(binding.bottomNavigation.selectedItemId)
+        }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!getSharedPreferences("USER_SESSION", MODE_PRIVATE).getBoolean("isLogin", false)) {
-            startActivity(Intent(this, LginActivity::class.java)); finish(); return
+            startActivity(Intent(this, LginActivity::class.java))
+            finish()
+            return
         }
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,12 +56,19 @@ class MainActivity : AppCompatActivity() {
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
             binding.topInset.layoutParams.height = bars.top
-            v.setPadding(bars.left, 0, bars.right, maxOf(bars.bottom, ime.bottom)); insets
+            v.setPadding(bars.left, 0, bars.right, maxOf(bars.bottom, ime.bottom))
+            insets
         }
         // The root owns system insets; do not let BottomNavigationView add them a second time.
-        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavigation) { nav, insets -> nav.setPadding(0, 0, 0, 0); insets }
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavigation) { nav, insets ->
+            nav.setPadding(0, 0, 0, 0)
+            insets
+        }
         onBackPressedDispatcher.addCallback(this, backForm)
-        binding.bottomNavigation.setOnItemSelectedListener { showTab(it.itemId); true }
+        binding.bottomNavigation.setOnItemSelectedListener {
+            showTab(it.itemId)
+            true
+        }
         binding.fabBuat.setOnClickListener { showForm() }
         binding.toolbarMain.setNavigationOnClickListener { backForm.handleOnBackPressed() }
         if (savedInstanceState == null) navigate(R.id.nav_beranda)
@@ -54,7 +82,11 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().apply {
             supportFragmentManager.fragments.forEach { hide(it) }
             val existing = supportFragmentManager.findFragmentByTag(tag)
-            if (existing == null) add(R.id.fragmentContainer, fragment, tag) else show(existing)
+            if (existing == null) {
+                add(R.id.fragmentContainer, fragment, tag)
+            } else {
+                show(existing)
+            }
         }.commit()
     }
     private fun showTab(id: Int) {
@@ -81,7 +113,10 @@ class MainActivity : AppCompatActivity() {
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = !redHeader
     }
     fun navigate(id: Int) {
-        if (id == R.id.nav_buat) { showForm(); return }
+        if (id == R.id.nav_buat) {
+            showForm()
+            return
+        }
         val actual = if (id == R.id.nav_riwayat) R.id.nav_pengaduan else id
         if (binding.bottomNavigation.selectedItemId == actual) showTab(actual)
         else binding.bottomNavigation.selectedItemId = actual
@@ -104,14 +139,18 @@ class MainActivity : AppCompatActivity() {
         if (!::binding.isInitialized) return
         val count = NotifikasiRepository(this).unread(username)
         if (count > 0) binding.bottomNavigation.getOrCreateBadge(R.id.nav_notifikasi).apply {
-            number = count; backgroundColor = ContextCompat.getColor(this@MainActivity, R.color.primary)
+            number = count
+            backgroundColor = ContextCompat.getColor(this@MainActivity, R.color.primary)
         } else binding.bottomNavigation.removeBadge(R.id.nav_notifikasi)
     }
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         if (savedInstanceState.getBoolean("form", false)) showForm()
     }
-    override fun onResume() { super.onResume(); refreshBadge() }
+    override fun onResume() {
+        super.onResume()
+        refreshBadge()
+    }
     override fun onSaveInstanceState(outState: Bundle) {
         if (::binding.isInitialized) {
             outState.putBoolean("form", showingForm)
@@ -121,7 +160,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun logout() {
         AlertDialog.Builder(this).setTitle("Keluar dari SiComplaint?")
-            .setMessage("Laporan Anda tetap tersimpan di perangkat ini.")
+            .setMessage("Tersimpan")
             .setNegativeButton("Batal", null).setPositiveButton("Ya, Keluar") { _, _ ->
                 getSharedPreferences("USER_SESSION", MODE_PRIVATE).edit().putBoolean("isLogin", false).remove("USERNAME").apply()
                 android.widget.Toast.makeText(this, "Anda telah berhasil logout.", android.widget.Toast.LENGTH_SHORT).show()

@@ -1,2 +1,149 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"><LinearLayout android:layout_width="match_parent" android:layout_height="360dp" android:orientation="vertical" android:id="@+id/hero" android:padding="24dp" android:background="@color/primary"><TextView android:id="@+id/tvWelcomeTitle" style="@style/Text.SiComplaint.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Halo, Rafli" android:textSize="14sp" android:textColor="@color/white"/><Space android:layout_width="1dp" android:layout_height="16dp"/><TextView android:id="@+id/tvAjakan" style="@style/Text.SiComplaint.Title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Ada yang perlu
-dilaporkan?" android:textSize="24sp" android:textColor="@color/white"/><Space android:layout_width="1dp" android:layout_height="16dp"/><EditText android:id="@+id/etCari" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/bg_white" android:drawableStart="@drawable/ic_figma_search" android:drawablePadding="8dp" android:paddingHorizontal="16dp" android:hint="Cari laporan di sekitarmu" android:textSize="12sp" android:singleLine="true" android:imeOptions="actionSearch" android:inputType="text" android:textColor="@color/text_dark" android:textColorHint="@color/gray_text"/><Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1"/><TextView android:id="@+id/tvRingkasan" style="@style/Text.SiComplaint.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="6 laporan masyarakat" android:textSize="12sp" android:textColor="#FFEAEA"/></LinearLayout><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp"><TextView android:id="@+id/tvKategoriHeading" style="@style/Text.SiComplaint.Heading" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Kategori Laporan" android:textSize="14sp" /><Space android:layout_width="1dp" android:layout_height="8dp"/><LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal"><ImageButton android:id="@+id/category0" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginEnd="8dp" android:background="@drawable/bg_white" android:padding="16dp" android:src="@drawable/ic_figma_road" app:tint="@color/primary" android:contentDescription="Jalan Rusak"/><ImageButton android:id="@+id/category1" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginEnd="8dp" android:background="@drawable/bg_white" android:padding="16dp" android:src="@drawable/ic_figma_trash" app:tint="@color/primary" android:contentDescription="Sampah Menumpuk"/><ImageButton android:id="@+id/category2" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginEnd="8dp" android:background="@drawable/bg_white" android:padding="16dp" android:src="@drawable/ic_figma_lamp" app:tint="@color/primary" android:contentDescription="Lampu Jalan Mati"/><ImageButton android:id="@+id/category3" android:layout_width="0dp" android:layout_height="56dp" android:layout_weight="1" android:layout_marginEnd="8dp" android:background="@drawable/bg_white" android:padding="16dp" android:src="@drawable/ic_figma_drain" app:tint="@color/primary" android:contentDescription="Drainase Tersumbat"/></LinearLayout><Space android:layout_width="1dp" android:layout_height="8dp"/><com.google.android.material.button.MaterialButton android:id="@+id/btnDaftarPublik" style="@style/Widget.SiComplaint.Button.Outlined" android:layout_width="match_parent" android:layout_height="56dp" android:text="Lihat pengaduan masyarakat" /><Space android:layout_width="1dp" android:layout_height="16dp"/><TextView android:id="@+id/tvSimpleHeading" style="@style/Text.SiComplaint.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Pilih kategori pengaduan" android:textSize="13sp" /></LinearLayout></LinearLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:orientation="vertical"
+        android:id="@+id/hero"
+        android:padding="24dp"
+        android:background="@color/primary">
+        <TextView
+            android:id="@+id/tvWelcomeTitle"
+            style="@style/Text.SiComplaint.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Halo, Rafli"
+            android:textSize="14sp"
+            android:textColor="@color/white" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="16dp" />
+        <TextView
+            android:id="@+id/tvAjakan"
+            style="@style/Text.SiComplaint.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ada yang perlu
+dilaporkan?"
+            android:textSize="24sp"
+            android:textColor="@color/white" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="16dp" />
+        <EditText
+            android:id="@+id/etCari"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_white"
+            android:drawableStart="@drawable/ic_figma_search"
+            android:drawablePadding="8dp"
+            android:paddingHorizontal="16dp"
+            android:hint="Cari laporan di sekitarmu"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textColor="@color/text_dark"
+            android:textColorHint="@color/gray_text" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/tvRingkasan"
+            style="@style/Text.SiComplaint.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6 laporan masyarakat"
+            android:textSize="12sp"
+            android:textColor="#FFEAEA" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/tvKategoriHeading"
+            style="@style/Text.SiComplaint.Heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kategori Laporan"
+            android:textSize="14sp" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/category0"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_white"
+                android:padding="16dp"
+                android:src="@drawable/ic_figma_road"
+                app:tint="@color/primary"
+                android:contentDescription="Jalan Rusak" />
+            <ImageButton
+                android:id="@+id/category1"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_white"
+                android:padding="16dp"
+                android:src="@drawable/ic_figma_trash"
+                app:tint="@color/primary"
+                android:contentDescription="Sampah Menumpuk" />
+            <ImageButton
+                android:id="@+id/category2"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_white"
+                android:padding="16dp"
+                android:src="@drawable/ic_figma_lamp"
+                app:tint="@color/primary"
+                android:contentDescription="Lampu Jalan Mati" />
+            <ImageButton
+                android:id="@+id/category3"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_white"
+                android:padding="16dp"
+                android:src="@drawable/ic_figma_drain"
+                app:tint="@color/primary"
+                android:contentDescription="Drainase Tersumbat" />
+        </LinearLayout>
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="8dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDaftarPublik"
+            style="@style/Widget.SiComplaint.Button.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Lihat pengaduan masyarakat" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="16dp" />
+        <TextView
+            android:id="@+id/tvSimpleHeading"
+            style="@style/Text.SiComplaint.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih kategori pengaduan"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

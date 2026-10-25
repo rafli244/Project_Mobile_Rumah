@@ -12,12 +12,19 @@ import com.example.rafli_3tia.databinding.ItemNotifikasiBinding
 class NotifikasiFragment : Fragment(R.layout.fragment_notifikasi) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         FragmentNotifikasiBinding.bind(view).btnBacaSemua.setOnClickListener {
-            NotifikasiRepository(requireContext()).markAll((requireActivity() as MainActivity).username); refresh()
+            NotifikasiRepository(requireContext()).markAll((requireActivity() as MainActivity).username)
+            refresh()
         }
         refresh()
     }
-    override fun onResume() { super.onResume(); refresh() }
-    override fun onHiddenChanged(hidden: Boolean) { super.onHiddenChanged(hidden); if (!hidden) refresh() }
+    override fun onResume() {
+        super.onResume()
+        refresh()
+    }
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) refresh()
+    }
     private fun refresh() {
         val b = view?.let { FragmentNotifikasiBinding.bind(it) } ?: return
         val host = requireActivity() as MainActivity
@@ -26,7 +33,9 @@ class NotifikasiFragment : Fragment(R.layout.fragment_notifikasi) {
         b.listNotifikasi.emptyView = b.tvEmpty
         b.listNotifikasi.adapter = NotifikasiAdapter(all)
         b.listNotifikasi.setOnItemClickListener { _, _, pos, _ ->
-            repo.mark(host.username, all[pos].id); refresh(); DetailActivity.open(requireContext(), all[pos].reportId)
+            repo.mark(host.username, all[pos].id)
+            refresh()
+            DetailActivity.open(requireContext(), all[pos].reportId)
         }
         host.refreshBadge()
     }
@@ -37,10 +46,23 @@ private class NotifikasiAdapter(private val items: List<Notifikasi>) : BaseAdapt
     override fun getItem(position: Int) = items[position]
     override fun getItemId(position: Int) = position.toLong()
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val holder = if (convertView == null) Holder(ItemNotifikasiBinding.inflate(LayoutInflater.from(parent.context), parent, false)).also { it.b.root.tag = it } else convertView.tag as Holder
+        val holder: Holder
+        if (convertView == null) {
+            val binding = ItemNotifikasiBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            holder = Holder(binding)
+            holder.b.root.tag = holder
+        } else {
+            holder = convertView.tag as Holder
+        }
         val p = items[position]
         with(holder.b) {
-            tvJudul.text = p.judul; tvIsi.text = p.isi; tvWaktu.text = p.tanggal
+            tvJudul.text = p.judul
+            tvIsi.text = p.isi
+            tvWaktu.text = p.tanggal
             dotUnread.visibility = if (p.dibaca) View.INVISIBLE else View.VISIBLE
             root.setBackgroundColor(parent.context.getColor(if (p.dibaca) R.color.background_app else R.color.primary_soft))
         }

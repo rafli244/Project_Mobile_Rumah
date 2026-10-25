@@ -1,1 +1,96 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:background="@color/background_app"><RadioGroup android:id="@+id/rgScope" android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:padding="4dp" android:background="@drawable/bg_soft" android:checkedButton="@id/rbMilikSaya"><RadioButton android:id="@+id/rbMilikSaya" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:button="@null" android:background="@drawable/bg_scope" android:gravity="center" android:text="Laporan Saya" android:textSize="12sp" android:textColor="@color/primary"/><RadioButton android:id="@+id/rbMasyarakat" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:button="@null" android:background="@drawable/bg_scope" android:gravity="center" android:text="Masyarakat" android:textSize="12sp" android:textColor="@color/primary"/></RadioGroup><Space android:layout_width="1dp" android:layout_height="16dp"/><EditText android:id="@+id/etFilter" android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/bg_white" android:drawableStart="@drawable/ic_figma_search" android:drawablePadding="8dp" android:paddingHorizontal="16dp" android:hint="Cari judul, kategori, atau lokasi" android:textSize="12sp" android:singleLine="true" android:inputType="text"/><Space android:layout_width="1dp" android:layout_height="16dp"/><TextView android:id="@+id/tvHeading" style="@style/Text.SiComplaint.Heading" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Riwayat laporan saya" android:textSize="16sp" /><Space android:layout_width="1dp" android:layout_height="8dp"/><TextView android:id="@+id/tvCount" style="@style/Text.SiComplaint.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="6 laporan" android:textSize="12sp" /><Space android:layout_width="1dp" android:layout_height="8dp"/><TextView android:id="@+id/tvEmpty" style="@style/Text.SiComplaint.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Belum ada laporan. Ketuk tombol + untuk membuat laporan." android:textSize="14sp" android:padding="24dp" android:gravity="center"/><ListView android:id="@+id/listPengaduan" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:divider="@android:color/transparent" android:dividerHeight="8dp" android:paddingBottom="72dp" android:clipToPadding="false"/></LinearLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_app">
+    <RadioGroup
+        android:id="@+id/rgScope"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:background="@drawable/bg_soft"
+        android:checkedButton="@id/rbMilikSaya">
+        <RadioButton
+            android:id="@+id/rbMilikSaya"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="@drawable/bg_scope"
+            android:gravity="center"
+            android:text="Laporan Saya"
+            android:textSize="12sp"
+            android:textColor="@color/primary" />
+        <RadioButton
+            android:id="@+id/rbMasyarakat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="@drawable/bg_scope"
+            android:gravity="center"
+            android:text="Masyarakat"
+            android:textSize="12sp"
+            android:textColor="@color/primary" />
+    </RadioGroup>
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="16dp" />
+    <EditText
+        android:id="@+id/etFilter"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_white"
+        android:drawableStart="@drawable/ic_figma_search"
+        android:drawablePadding="8dp"
+        android:paddingHorizontal="16dp"
+        android:hint="Cari judul, kategori, atau lokasi"
+        android:textSize="12sp"
+        android:singleLine="true"
+        android:inputType="text" />
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="16dp" />
+    <TextView
+        android:id="@+id/tvHeading"
+        style="@style/Text.SiComplaint.Heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Riwayat laporan saya"
+        android:textSize="16sp" />
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="8dp" />
+    <TextView
+        android:id="@+id/tvCount"
+        style="@style/Text.SiComplaint.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="6 laporan"
+        android:textSize="12sp" />
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="8dp" />
+    <TextView
+        android:id="@+id/tvEmpty"
+        style="@style/Text.SiComplaint.Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Belum ada laporan. Ketuk tombol + untuk membuat laporan."
+        android:textSize="14sp"
+        android:padding="24dp"
+        android:gravity="center" />
+    <ListView
+        android:id="@+id/listPengaduan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:paddingBottom="72dp"
+        android:clipToPadding="false" />
+</LinearLayout>

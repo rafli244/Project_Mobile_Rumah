@@ -1,5 +1,18 @@
 package com.example.rafli_3tia
 
+/*
+ * =====================================================================================
+ * CUSTOM LISTVIEW ADAPTER & ITEM CLICK LISTENER
+ * =====================================================================================
+ * Materi  : Pertemuan 7
+ * Konsep  :
+ *   1. Subclass BaseAdapter(): Wajib implement getCount(), getItem(), getItemId(), getView().
+ *   2. ViewHolder Pattern: Menyimpan binding baris di row.tag agar hemat memori saat scroll.
+ *   3. Binding Baris: ItemPengaduanBinding.inflate(LayoutInflater.from(parent.context), parent, false).
+ *   4. Aksi Klik Item: binding.btnDetail.setOnClickListener { onDetail(item) }.
+ * =====================================================================================
+ */
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +49,18 @@ class PengaduanAdapter(
             tvLokasi.text = p.lokasi
             tvTanggal.text = p.tanggal
             tvStatus.text = statusLabel(p.status)
-            tvStatus.setBackgroundResource(statusBackground(p.status))
-            ivLaporan.setImageResource(categoryIcon(p.kategori))
+            if (p.id == "DEMO-1" || p.kategori == "Jalan Rusak") {
+                ivLaporan.setImageResource(R.drawable.lubang)
+                ivLaporan.imageTintList = null
+                ivLaporan.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+                ivLaporan.setPadding(0, 0, 0, 0)
+            } else {
+                ivLaporan.setImageResource(categoryIcon(p.kategori))
+                ivLaporan.imageTintList = ContextCompat.getColorStateList(parent.context, R.color.primary)
+                ivLaporan.scaleType = android.widget.ImageView.ScaleType.FIT_CENTER
+                val p16 = (16 * parent.context.resources.displayMetrics.density).toInt()
+                ivLaporan.setPadding(p16, p16, p16, p16)
+            }
             tvStatus.setTextColor(ContextCompat.getColor(parent.context, R.color.white))
             ivLaporan.contentDescription = "Ikon laporan ${p.kategori}"
             btnDetail.contentDescription = "Detail ${p.judul}"

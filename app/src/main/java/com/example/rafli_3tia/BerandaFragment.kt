@@ -11,7 +11,10 @@ import com.example.rafli_3tia.databinding.HeaderBerandaBinding
 
 class BerandaFragment : Fragment(R.layout.fragment_beranda) {
     private var header: HeaderBerandaBinding? = null
-    override fun onDestroyView() { header = null; super.onDestroyView() }
+    override fun onDestroyView() {
+        header = null
+        super.onDestroyView()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val b = FragmentBerandaBinding.bind(view)
         val h = HeaderBerandaBinding.inflate(layoutInflater, b.listKategori, false)
@@ -19,11 +22,19 @@ class BerandaFragment : Fragment(R.layout.fragment_beranda) {
         val metrics = resources.displayMetrics
         h.hero.layoutParams.height = ((metrics.heightPixels / metrics.density * .47f).coerceIn(280f, 440f) * metrics.density).toInt()
         b.listKategori.post {
-            if (header === h) { h.hero.layoutParams.height = (b.listKategori.height * .86f).toInt(); h.hero.requestLayout() }
+            if (header === h) {
+                h.hero.layoutParams.height = (b.listKategori.height * .86f).toInt()
+                h.hero.requestLayout()
+            }
         }
         h.tvAjakan.text = "Ada yang perlu\ndilaporkan?"
         b.listKategori.addHeaderView(h.root, null, false)
-        b.listKategori.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, PengaduanRepository.kategori)
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            PengaduanRepository.kategori
+        )
+        b.listKategori.adapter = adapter
         b.listKategori.setOnItemClickListener { _, _, position, _ ->
             val index = position - b.listKategori.headerViewsCount
             if (index in PengaduanRepository.kategori.indices) Toast.makeText(requireContext(), "Kategori dipilih: ${PengaduanRepository.kategori[index]}", Toast.LENGTH_SHORT).show()
@@ -42,11 +53,14 @@ class BerandaFragment : Fragment(R.layout.fragment_beranda) {
         }
         refresh()
     }
-    override fun onHiddenChanged(hidden: Boolean) { super.onHiddenChanged(hidden); if (!hidden) refresh() }
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) refresh()
+    }
     private fun refresh() {
         val b = header ?: return
         val host = requireActivity() as MainActivity
-        b.tvWelcomeTitle.text = "Halo, ${host.account.nama(host.username).substringBefore(' ')}"
+        b.tvWelcomeTitle.text = "Halo, ${host.username}"
         val all = PengaduanRepository(requireContext()).semua()
         b.tvRingkasan.text = "${all.size} laporan  •  ${all.count { it.status == "Selesai" }} selesai ditangani"
     }

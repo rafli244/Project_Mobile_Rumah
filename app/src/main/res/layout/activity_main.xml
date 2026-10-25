@@ -1,8 +1,62 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/white"><View android:id="@+id/topInset" android:layout_width="match_parent" android:layout_height="0dp" android:background="@color/primary"/><FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
- <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
-  <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbarMain" android:layout_width="match_parent" android:layout_height="56dp" android:background="@color/primary" app:titleTextColor="@color/white" app:titleTextAppearance="@style/Text.SiComplaint.Heading" app:navigationIconTint="@color/white"/>
-  <androidx.fragment.app.FragmentContainerView android:id="@+id/fragmentContainer" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
-  <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavigation" android:layout_width="match_parent" android:layout_height="64dp" android:background="@color/white" app:menu="@menu/bottom_navigation" app:labelVisibilityMode="labeled" app:itemHorizontalTranslationEnabled="false" app:itemIconSize="24dp" app:itemIconTint="@color/nav_item_color" app:itemTextColor="@color/nav_item_color" app:itemTextAppearanceActive="@style/Text.SiComplaint.Nav" app:itemTextAppearanceInactive="@style/Text.SiComplaint.Nav"/>
- </LinearLayout>
- <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabBuat" android:layout_width="56dp" android:layout_height="56dp" android:layout_gravity="bottom|end" android:layout_marginEnd="16dp" android:layout_marginBottom="80dp" android:src="@drawable/ic_figma_plus" android:contentDescription="Buat Laporan" app:tint="@color/white" app:backgroundTint="@color/primary" app:fabCustomSize="56dp"/>
-</FrameLayout></LinearLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <View
+        android:id="@+id/topInset"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/primary" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarMain"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/primary"
+                app:titleTextColor="@color/white"
+                app:titleTextAppearance="@style/Text.SiComplaint.Heading"
+                app:navigationIconTint="@color/white" />
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/white"
+                app:menu="@menu/bottom_navigation"
+                app:labelVisibilityMode="labeled"
+                app:itemHorizontalTranslationEnabled="false"
+                app:itemIconSize="24dp"
+                app:itemIconTint="@color/nav_item_color"
+                app:itemTextColor="@color/nav_item_color"
+                app:itemTextAppearanceActive="@style/Text.SiComplaint.Nav"
+                app:itemTextAppearanceInactive="@style/Text.SiComplaint.Nav" />
+        </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabBuat"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/ic_figma_plus"
+            android:contentDescription="Buat Laporan"
+            app:tint="@color/white"
+            app:backgroundTint="@color/primary"
+            app:fabCustomSize="56dp" />
+    </FrameLayout>
+</LinearLayout>

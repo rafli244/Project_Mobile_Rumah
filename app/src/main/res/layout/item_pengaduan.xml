@@ -1,1 +1,108 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="16dp" app:cardElevation="2dp" app:cardUseCompatPadding="true" app:cardBackgroundColor="@color/white"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="16dp"><ImageView android:id="@+id/ivLaporan" android:layout_width="56dp" android:layout_height="80dp" android:padding="16dp" android:layout_marginEnd="16dp" android:src="@drawable/ic_figma_road" android:background="@drawable/bg_soft" app:tint="@color/primary" android:contentDescription="Ikon laporan"/><LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"><TextView android:id="@+id/tvJudul" style="@style/Text.SiComplaint.Heading" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Judul laporan" android:textSize="14sp" android:maxLines="2" android:ellipsize="end"/><Space android:layout_width="1dp" android:layout_height="8dp"/><TextView android:id="@+id/tvKategori" style="@style/Text.SiComplaint.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Kategori" android:textSize="11sp" /><Space android:layout_width="1dp" android:layout_height="4dp"/><TextView android:id="@+id/tvLokasi" style="@style/Text.SiComplaint.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lokasi" android:textSize="11sp" android:maxLines="1" android:ellipsize="end"/><Space android:layout_width="1dp" android:layout_height="4dp"/><TextView android:id="@+id/tvTanggal" style="@style/Text.SiComplaint.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Tanggal" android:textSize="10sp" /><Space android:layout_width="1dp" android:layout_height="8dp"/><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical"><TextView android:id="@+id/tvStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:background="@drawable/chip_diproses" android:text="Dalam Proses" android:textColor="@color/white" android:textSize="10sp" android:fontFamily="@font/inter_medium"/><Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/><com.google.android.material.button.MaterialButton android:id="@+id/btnDetail" style="@style/Widget.SiComplaint.Button.Outlined" android:layout_width="wrap_content" android:layout_height="40dp" android:minHeight="40dp" android:minWidth="64dp" android:textSize="11sp" android:text="Detail" android:focusable="false" app:cornerRadius="8dp"/></LinearLayout></LinearLayout></LinearLayout></androidx.cardview.widget.CardView>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+        <ImageView
+            android:id="@+id/ivLaporan"
+            android:layout_width="56dp"
+            android:layout_height="80dp"
+            android:padding="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_figma_road"
+            android:background="@drawable/bg_soft"
+            app:tint="@color/primary"
+            android:contentDescription="Ikon laporan" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvJudul"
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Judul laporan"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="8dp" />
+            <TextView
+                android:id="@+id/tvKategori"
+                style="@style/Text.SiComplaint.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kategori"
+                android:textSize="11sp" />
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="4dp" />
+            <TextView
+                android:id="@+id/tvLokasi"
+                style="@style/Text.SiComplaint.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lokasi"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="4dp" />
+            <TextView
+                android:id="@+id/tvTanggal"
+                style="@style/Text.SiComplaint.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal"
+                android:textSize="10sp" />
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:background="@drawable/chip_diproses"
+                    android:text="Dalam Proses"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/inter_medium" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDetail"
+                    style="@style/Widget.SiComplaint.Button.Outlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:minHeight="40dp"
+                    android:minWidth="64dp"
+                    android:textSize="11sp"
+                    android:text="Detail"
+                    android:focusable="false"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

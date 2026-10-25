@@ -29,6 +29,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    testOptions { animationsDisabled = true }
     buildFeatures {
         viewBinding=true
     }
@@ -36,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.fragment:fragment:1.5.4")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

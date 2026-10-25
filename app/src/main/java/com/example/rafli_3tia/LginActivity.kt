@@ -36,6 +36,33 @@ class LginActivity : AppCompatActivity() {
             Log.e("LginActivity", "Insets error", e)
         }
 
+        val remembered = getSharedPreferences("LOGIN_PREFERENCES", MODE_PRIVATE)
+        binding.checkBox.isChecked = remembered.getBoolean("remember", false)
+        if (binding.checkBox.isChecked) binding.editTextText.setText(remembered.getString("username", ""))
+        binding.tvLupaPassword.setOnClickListener {
+            androidx.appcompat.app.AlertDialog.Builder(this).setTitle("Bantuan akun demo")
+                .setMessage("Akun demo: rafli / 12345 atau admin / admin123.").setPositiveButton("Tutup", null).show()
+        }
+        binding.tvDaftar.setOnClickListener {
+            val form = com.example.rafli_3tia.databinding.DialogRegisterBinding.inflate(layoutInflater)
+            val dialog = androidx.appcompat.app.AlertDialog.Builder(this).setTitle("Daftar Akun")
+                .setMessage("Buat akun lokal untuk melaporkan masalah di sekitar Anda.")
+                .setView(form.root).setNegativeButton("Batal", null).setPositiveButton("Daftar", null).create()
+            dialog.setOnShowListener {
+                dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                    val user = form.etUsernameDaftar.text.toString().trim()
+                    val error = AkunRepository(this).daftar(form.etNamaDaftar.text.toString(), user, form.etPasswordDaftar.text.toString())
+                    if (error != null) form.etUsernameDaftar.error = error
+                    else {
+                        binding.editTextText.setText(user)
+                        binding.editTextTextPassword.text?.clear()
+                        Toast.makeText(this, "Akun berhasil dibuat. Silakan masuk.", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                }
+            }
+            dialog.show()
+        }
         binding.btnLogin.setOnClickListener {
             val usernameInput = binding.editTextText.text.toString().trim()
             val passwordInput = binding.editTextTextPassword.text.toString().trim()
@@ -63,7 +90,9 @@ class LginActivity : AppCompatActivity() {
             val isRafliValid = usernameInput.equals("rafli", ignoreCase = true) && passwordInput == "12345"
             val isAdminValid = usernameInput.equals("admin", ignoreCase = true) && passwordInput == "admin123"
 
-            if (isRafliValid || isAdminValid) {
+            if (isRafliValid || isAdminValid || AkunRepository(this).valid(usernameInput, passwordInput)) {
+                remembered.edit().putBoolean("remember", binding.checkBox.isChecked)
+                    .putString("username", if (binding.checkBox.isChecked) usernameInput else "").apply()
                 // 3. Simpan Sesi ke SharedPreferences
                 val sharedPreferences = getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
                 with(sharedPreferences.edit()) {

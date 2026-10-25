@@ -1,15 +1,1 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="96dp"
-    android:height="96dp"
-    android:viewportWidth="96"
-    android:viewportHeight="96">
-    <!-- Pin & Bubble Background (Putih Bersih) -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M48,8 C30.33,8 16,22.33 16,40 C16,52.2 22.8,62.8 33,68.2 L28,84 L44.5,75.8 C45.65,75.93 46.81,76 48,76 C65.67,76 80,61.67 80,44 C80,26.33 65.67,8 48,8 Z" />
-
-    <!-- Tanda Centang Merah Primer -->
-    <path
-        android:fillColor="#E53935"
-        android:pathData="M42,56.5 L28.5,43 L32.8,38.7 L42,47.9 L63.2,26.7 L67.5,31 L42,56.5 Z" />
-</vector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="42dp" android:height="56dp" android:viewportWidth="42" android:viewportHeight="56"><path android:pathData="M20.8773 0C9.34806 0 0 9.04605 0 20.5876C0 36.3402 20.8773 55.524 20.8773 55.524C20.8773 55.524 41.7547 36.3402 41.7547 20.5876C41.7547 9.04605 32.4066 0 20.8773 0Z" android:fillColor="#FFFFFF"/><path android:pathData="M9.9713 11.5415H31.7835C35.2111 11.5415 38.0155 14.3489 38.0155 17.7802V28.3859C38.0155 31.8171 35.2111 34.6245 31.7835 34.6245H23.3702L17.4498 39.9274V34.6245H9.9713C6.54368 34.6245 3.73926 31.8171 3.73926 28.3859V17.7802C3.73926 14.3489 6.54368 11.5415 9.9713 11.5415Z" android:fillColor="#E53935"/><path android:pathData="M12.1525 22.6151L17.4497 27.918L28.979 16.0645" android:strokeColor="#FFFFFF" android:fillColor="#00000000" android:strokeWidth="5.16558" android:strokeLineCap="round" android:strokeLineJoin="round"/></vector>

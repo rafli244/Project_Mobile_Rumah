@@ -1,22 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Rafli_3TIA" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/primary</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="android:statusBarColor">@color/primary_dark</item>
-        <item name="android:windowLightStatusBar">false</item>
-    </style>
-
-    <style name="Theme.Rafli_3TIA" parent="Base.Theme.Rafli_3TIA" />
-
-    <!-- Style Toolbar Khusus SiComplaint -->
-    <style name="Widget.SiComplaint.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="titleTextColor">@color/white</item>
-        <item name="subtitleTextColor">#FFEAEA</item>
-        <item name="navigationIconTint">@color/white</item>
-    </style>
-</resources>
+<resources><style name="Base.Theme.Rafli_3TIA" parent="Theme.MaterialComponents.Light.NoActionBar">
+ <item name="colorPrimary">@color/primary</item><item name="colorPrimaryVariant">@color/primary_dark</item><item name="colorOnPrimary">@color/white</item><item name="colorSecondary">@color/primary</item><item name="colorOnSecondary">@color/white</item><item name="android:fontFamily">@font/inter_24pt_regular</item><item name="android:windowLightStatusBar">true</item><item name="android:windowLightNavigationBar">true</item><item name="android:windowBackground">@color/background_app</item><item name="materialButtonStyle">@style/Widget.SiComplaint.Button</item><item name="textInputStyle">@style/Widget.SiComplaint.Input</item><item name="android:colorAccent">@color/primary</item>
+ </style><style name="Theme.Rafli_3TIA" parent="Base.Theme.Rafli_3TIA"/>
+ <style name="Widget.SiComplaint.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary"><item name="titleTextColor">@color/white</item><item name="navigationIconTint">@color/white</item><item name="titleTextAppearance">@style/Text.SiComplaint.Heading</item></style></resources>

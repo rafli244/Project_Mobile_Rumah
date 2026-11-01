@@ -20,6 +20,9 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         b.btnLogout.setOnClickListener { (requireActivity() as MainActivity).logout() }
         b.btnRiwayat.setOnClickListener { (requireActivity() as MainActivity).showReports(true) }
         b.btnEditProfil.setOnClickListener { editProfile() }
+        b.btnTutorial.setOnClickListener {
+            startActivity(android.content.Intent(requireContext(), TutorialActivity::class.java))
+        }
         refresh()
     }
     override fun onHiddenChanged(hidden: Boolean) { super.onHiddenChanged(hidden); if (!hidden) refresh() }

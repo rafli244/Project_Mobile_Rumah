@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <!-- MATERI-14: toolbar judul/back/menu dikendalikan MainActivity. -->
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbarMain"
                 android:layout_width="match_parent"
@@ -27,11 +28,13 @@
                 app:titleTextColor="@color/white"
                 app:titleTextAppearance="@style/Text.SiComplaint.Heading"
                 app:navigationIconTint="@color/white" />
+            <!-- MATERI-12 / MATERI-13: wadah Fragment; transaksi add/hide/show ada di MainActivity.display. -->
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainer"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
+            <!-- MATERI-13: menu bottom_navigation.xml; klik item ditangani setOnItemSelectedListener. -->
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigation"
                 android:layout_width="match_parent"

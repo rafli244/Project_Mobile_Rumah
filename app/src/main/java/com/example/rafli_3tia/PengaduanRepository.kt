@@ -9,6 +9,7 @@ import java.util.Locale
  */
 class PengaduanRepository(context: Context? = null) {
 
+    // MATERI-01: fun mengembalikan List<Pengaduan>; List adalah antarmuka baca, bukan jaminan objek immutable.
     fun semua(): List<Pengaduan> = listLaporan
 
     fun riwayat(username: String): List<Pengaduan> = semua().filter {
@@ -23,6 +24,7 @@ class PengaduanRepository(context: Context? = null) {
     }
 
     companion object {
+        // MATERI-01: listOf membentuk daftar; dipakai ArrayAdapter Beranda dan menu kategori.
         val kategori = listOf(
             "Jalan Rusak", "Sampah Menumpuk", "Lampu Jalan Mati",
             "Drainase Tersumbat", "Fasilitas Umum Rusak", "Gangguan Ketertiban"

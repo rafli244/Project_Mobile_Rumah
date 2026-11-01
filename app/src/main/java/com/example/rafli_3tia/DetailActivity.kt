@@ -35,7 +35,9 @@ class DetailActivity : AppCompatActivity() {
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
+        // MATERI-14: tombol kembali toolbar menutup Activity detail.
         b.toolbarDetail.setNavigationOnClickListener { finish() }
+        // MATERI-06 / MATERI-01: getStringExtra + ?:; key PENGADUAN_ID sama dengan fungsi open.
         val p = PengaduanRepository(this).cari(intent.getStringExtra("PENGADUAN_ID") ?: "DEMO-1")
         if (p == null) {
             Toast.makeText(this, "Laporan tidak ditemukan", Toast.LENGTH_SHORT).show()
@@ -67,6 +69,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object {
+        // MATERI-06: helper pengirim Intent; salin bersama penerima di onCreate dan import Intent/Context.
         fun open(context: Context, id: String) {
             context.startActivity(Intent(context, DetailActivity::class.java).putExtra("PENGADUAN_ID", id))
         }

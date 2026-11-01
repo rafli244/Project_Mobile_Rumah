@@ -38,6 +38,7 @@ class BuatLaporanFragment : Fragment(R.layout.fragment_buat_laporan) {
             field.addTextChangedListener { if (!it.isNullOrBlank()) field.error = null }
         }
 
+        // MATERI-10: ArrayAdapter juga bisa mengisi Spinner; contoh ListView ada di BerandaFragment.
         b.spinnerKategori.adapter = ArrayAdapter(
             requireContext(), android.R.layout.simple_spinner_item,
             listOf("Pilih kategori") + PengaduanRepository.kategori
@@ -45,6 +46,7 @@ class BuatLaporanFragment : Fragment(R.layout.fragment_buat_laporan) {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
 
+        // MATERI-05: validasi banyak input; firstOrNull mencari field kosong, error dan return menghentikan pengiriman.
         b.btnKirim.setOnClickListener {
             val fields = listOf(b.etJudul, b.etLokasi, b.etDeskripsi)
             fields.forEach { it.error = null }
@@ -93,6 +95,7 @@ class BuatLaporanFragment : Fragment(R.layout.fragment_buat_laporan) {
             b.switchAnonim.isChecked = false
             b.rgPrioritas.check(R.id.rbNormal)
 
+            // MATERI-09: dialog di Fragment memakai requireContext(); contoh konfirmasi sebelum tindakan ada di MainActivity.logout.
             AlertDialog.Builder(requireContext())
                 .setTitle("Laporan berhasil dikirim")
                 .setMessage("${p.judul}\nStatus: Menunggu\nLaporan tersimpan di memori aplikasi.")

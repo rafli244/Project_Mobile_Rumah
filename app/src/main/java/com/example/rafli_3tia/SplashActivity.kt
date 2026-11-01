@@ -57,13 +57,17 @@ class SplashActivity : AppCompatActivity() {
             Log.e("SplashActivity", "Insets error", e)
         }
 
+        // MATERI-08 MULAI: Handler main thread menjadwalkan blok setelah splashDuration (2000 ms).
+        // Ini penjadwalan, bukan Thread.sleep; salin sampai }, splashDuration).
         Handler(Looper.getMainLooper()).postDelayed({
             // 1. Ambil data sesi dari SharedPreferences
+            // MATERI-07: baca isLogin; default false ketika sesi belum tersimpan.
             val sharedPreferences = getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
             val isLogin = sharedPreferences.getBoolean("isLogin", false)
             val savedUsername = sharedPreferences.getString("USERNAME", "Rafli")
 
             // 2. Tentukan tujuan intent berdasarkan status isLogin
+            // MATERI-01 / MATERI-06: if-else menentukan Activity tujuan; finish menutup Splash.
             if (isLogin) {
                 // Sudah login -> Langsung ke MainActivity
                 val intent = Intent(this, MainActivity::class.java).apply {

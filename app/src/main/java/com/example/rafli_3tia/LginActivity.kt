@@ -29,6 +29,7 @@ import com.example.rafli_3tia.databinding.ActivityLginBinding
 class LginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLginBinding
 
+    // MATERI-03: onCreate menyiapkan Activity; super.onCreate wajib dipanggil.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
@@ -38,6 +39,8 @@ class LginActivity : AppCompatActivity() {
         }
 
         // Inisialisasi ViewBinding
+        // MATERI-04: activity_lgin.xml -> ActivityLginBinding; inflate lalu pasang binding.root.
+        // Aktifkan buildFeatures { viewBinding = true } pada Gradle module app.
         binding = ActivityLginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -51,6 +54,7 @@ class LginActivity : AppCompatActivity() {
             Log.e("LginActivity", "Insets error", e)
         }
 
+        // MATERI-07: preferensi remember username terpisah dari sesi USER_SESSION.
         val remembered = getSharedPreferences("LOGIN_PREFERENCES", MODE_PRIVATE)
         binding.checkBox.isChecked = remembered.getBoolean("remember", false)
         if (binding.checkBox.isChecked) {
@@ -73,7 +77,10 @@ class LginActivity : AppCompatActivity() {
                 .show()
         }
 
+        // MATERI-05 MULAI: salin listener btnLogin utuh untuk klik, input, validasi dan Toast.
+        // Pasangan XML: editTextText, editTextTextPassword, tilUsername, tilPassword, btnLogin.
         binding.btnLogin.setOnClickListener {
+            // MATERI-01: val, String, trim; nilai input dibaca ketika tombol diklik.
             val usernameInput = binding.editTextText.text.toString().trim()
             val passwordInput = binding.editTextTextPassword.text.toString().trim()
 
@@ -82,6 +89,7 @@ class LginActivity : AppCompatActivity() {
             binding.tilPassword.error = null
 
             // 1. Validasi Input Tidak Boleh Kosong
+            // MATERI-05: input kosong -> error TextInputLayout + Toast + hentikan listener dengan return berlabel.
             if (usernameInput.isEmpty()) {
                 binding.tilUsername.error = "Username tidak boleh kosong!"
                 binding.editTextText.requestFocus()
@@ -101,11 +109,13 @@ class LginActivity : AppCompatActivity() {
             val isAdminValid = usernameInput.equals("admin", ignoreCase = true) && passwordInput == "admin123"
             val isMatching = usernameInput == passwordInput
 
+            // MATERI-01: if-else dan operator ||; cabang sukses menyimpan sesi, else memberi error.
             if (isRafliValid || isAdminValid || isMatching) {
                 remembered.edit().putBoolean("remember", binding.checkBox.isChecked)
                     .putString("username", if (binding.checkBox.isChecked) usernameInput else "").apply()
 
                 // 3. Simpan Sesi ke SharedPreferences
+                // MATERI-07: edit -> putBoolean/putString -> apply menyimpan sesi key-value.
                 val sharedPreferences = getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
                 with(sharedPreferences.edit()) {
                     putBoolean("isLogin", true)
@@ -116,6 +126,8 @@ class LginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login Berhasil! Halo, $usernameInput", Toast.LENGTH_SHORT).show()
 
                 // 4. Intent Berpindah dari Login ke MainActivity
+                // MATERI-06: putExtra mengirim data; penerima MainActivity membaca EXTRA_USERNAME.
+                // Activity tujuan harus terdaftar di AndroidManifest.xml.
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra("EXTRA_USERNAME", usernameInput)
                 }

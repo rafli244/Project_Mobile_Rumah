@@ -64,6 +64,7 @@
             android:visibility="gone"
             android:scaleType="centerCrop"
             android:contentDescription="Pratinjau foto bukti" />
+        <!-- MATERI-02: Button biasa; id menghubungkan tombol dengan listener Kotlin. -->
         <Button
             android:id="@+id/btnHapusFoto"
             android:layout_width="wrap_content"

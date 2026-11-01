@@ -16,6 +16,7 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
         app:cardBackgroundColor="@color/white">
+        <!-- MATERI-02: LinearLayout vertical menyusun anak dari atas ke bawah. -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
             <Space
                 android:layout_width="1dp"
                 android:layout_height="24dp" />
+            <!-- MATERI-02: TextView menampilkan teks; android:id menjadi properti ViewBinding. -->
             <TextView
                 android:id="@+id/tvWelcomeTitle"
                 style="@style/Text.SiComplaint.Title"
@@ -62,6 +64,7 @@
                 android:text="Username / Email"
                 android:textSize="12sp"
                 android:layout_marginBottom="8dp" />
+            <!-- MATERI-15: TextInputLayout membungkus TextInputEditText, menyediakan hint dan error. -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilUsername"
                 style="@style/Widget.SiComplaint.Input"
@@ -138,6 +141,7 @@
                     android:text="Lupa kata sandi?"
                     android:textColor="@color/primary" />
             </LinearLayout>
+            <!-- MATERI-15 / MATERI-05: MaterialButton; listener klik berada di LginActivity. -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogin"
                 style="@style/Widget.SiComplaint.Button"

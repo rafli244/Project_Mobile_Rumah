@@ -26,4 +26,12 @@
     <color name="merah_utama">#E53935</color>
     <color name="biru_utama">#2563EB</color>
     <color name="bg_abu">#FAF7F6</color>
+
+    <!-- Tutorial & Indicator Colors (Pertemuan 9) -->
+    <color name="tutorial_red">#E53935</color>
+    <color name="tutorial_blue">#2563EB</color>
+    <color name="tutorial_teal">#0D9488</color>
+    <color name="tutorial_green">#10B981</color>
+    <color name="abu_gelap">#5F6368</color>
+    <color name="dot_selected">#E53935</color>
 </resources>

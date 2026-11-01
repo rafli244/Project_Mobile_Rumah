@@ -9,6 +9,8 @@ package com.example.rafli_3tia
  * =====================================================================================
  */
 
+// MATERI-11 / MATERI-01: model satu laporan; data class membuat equals/copy/toString otomatis.
+// val properti; nilai default dipakai jika argumen opsional tidak diisi.
 data class Pengaduan(
     val id: String,
     val judul: String,

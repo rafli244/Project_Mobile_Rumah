@@ -20,6 +20,8 @@ import android.widget.BaseAdapter
 import androidx.core.content.ContextCompat
 import com.example.rafli_3tia.databinding.ItemPengaduanBinding
 
+// MATERI-11 MULAI: custom BaseAdapter menerima List<Pengaduan> dan callback klik detail.
+// Salin class utuh + Pengaduan.kt + item_pengaduan.xml + fungsi statusLabel/categoryIcon yang dipakai.
 class PengaduanAdapter(
     private val reports: List<Pengaduan>,
     private val onDetail: (Pengaduan) -> Unit
@@ -30,6 +32,8 @@ class PengaduanAdapter(
 
     private class ViewHolder(val binding: ItemPengaduanBinding)
 
+    // MATERI-11: getView mengisi satu baris; convertView nullable untuk daur ulang view.
+    // ViewHolder menyimpan binding; jika null inflate baris baru, else gunakan baris lama.
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val holder: ViewHolder
         val row: View

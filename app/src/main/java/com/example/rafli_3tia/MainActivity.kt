@@ -28,9 +28,42 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.example.rafli_3tia.databinding.ActivityMainBinding
 
+/*
+ * PETA MATERI UJIAN - cari MATERI-01 sampai MATERI-15 dengan Ctrl+Shift+F.
+ * Nomor label mengikuti daftar topik belajar, BUKAN nomor pertemuan modul.
+ * 01 Dasar Kotlin: LginActivity (val, if-else), MainActivity (var, fun, ?. dan ?:),
+ *    PengaduanRepository (List, listOf). val = referensi tidak bisa diassign ulang;
+ *    isi objek mutable yang ditunjuk val masih bisa berubah.
+ * 02 XML: activity_lgin (LinearLayout, TextView), fragment_pengaduan (EditText),
+ *    fragment_buat_laporan (Button), activity_tutorial (ConstraintLayout).
+ * 03 Activity/Lifecycle: LginActivity.onCreate, setContentView; MainActivity.onResume.
+ * 04 ViewBinding: LginActivity.inflate; PengaduanFragment.bind; app/build.gradle.kts.
+ * 05 Klik/Toast/validasi: LginActivity.btnLogin; BuatLaporanFragment.btnKirim.
+ * 06 Intent: LginActivity mengirim EXTRA_USERNAME; MainActivity menerima.
+ *    DetailActivity.open mengirim PENGADUAN_ID; onCreate menerima key yang sama.
+ * 07 SharedPreferences: LginActivity menyimpan; SplashActivity membaca; logout di sini.
+ * 08 Splash: SplashActivity, Handler(Looper.getMainLooper()).postDelayed.
+ * 09 AlertDialog konfirmasi: fungsi logout di file ini (Batal / Ya, Keluar).
+ * 10 ListView sederhana: BerandaFragment ArrayAdapter + fragment_beranda.xml.
+ * 11 Custom Adapter: PengaduanAdapter BaseAdapter/getView + Pengaduan data class.
+ *    ArrayAdapter sederhana ada di BerandaFragment; bukan custom ArrayAdapter.
+ * 12 Fragment: PengaduanFragment.onViewCreated dan binding; Tutorial1Fragment.
+ *    onCreateView tidak dioverride: Fragment(R.layout...) meng-inflate layout otomatis.
+ * 13 Bottom Navigation: listener, showTab dan display di file ini;
+ *    activity_main.xml + menu/bottom_navigation.xml.
+ * 14 Toolbar: listener menu/back dan updateChrome di sini; DetailActivity tombol back;
+ *    activity_main.xml + menu/main_toolbar_menu.xml.
+ * 15 Material: activity_lgin TextInputLayout/MaterialButton; fragment_pengaduan ChipGroup;
+ *    header_beranda GridLayout/bg_header_wafe; drawable/bg_header_wafe.xml;
+ *    TutorialActivity + TutorialFragmentAdapter + activity_tutorial untuk pager/dots.
+ *    MenuProvider BELUM dipakai. Menu aktif memakai toolbar.inflateMenu dan listener.
+
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    // MATERI-01: var bisa diassign ulang; Boolean menyimpan kondisi form.
     private var showingForm = false
+    // MATERI-01 / MATERI-06: ?. akses aman; ?: nilai cadangan jika null; getStringExtra menerima Intent.
     val username: String
         get() = intent.getStringExtra("EXTRA_USERNAME")?.takeIf { it.isNotBlank() }
             ?: getSharedPreferences("USER_SESSION", MODE_PRIVATE)
@@ -65,12 +98,21 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         onBackPressedDispatcher.addCallback(this, backForm)
+        // MATERI-13: id menu -> showTab -> FragmentManager; pasangan XML: activity_main + bottom_navigation.
         binding.bottomNavigation.setOnItemSelectedListener {
             showTab(it.itemId)
             true
         }
         binding.fabBuat.setOnClickListener { showForm() }
+        // MATERI-14 / MATERI-15: back dan menu toolbar aktif. Ini memakai inflateMenu, bukan MenuProvider.
         binding.toolbarMain.setNavigationOnClickListener { backForm.handleOnBackPressed() }
+        binding.toolbarMain.inflateMenu(R.menu.main_toolbar_menu)
+        binding.toolbarMain.setOnMenuItemClickListener { menuItem ->
+            if (menuItem.itemId == R.id.action_tutorial) {
+                startActivity(Intent(this, TutorialActivity::class.java))
+                true
+            } else false
+        }
         if (savedInstanceState == null) navigate(R.id.nav_beranda)
         else {
             showingForm = savedInstanceState.getBoolean("form", false)
@@ -78,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         }
         refreshBadge()
     }
+    // MATERI-12 / MATERI-13: transaksi Fragment; add pertama kali, hide/show untuk berpindah tab.
     private fun display(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction().apply {
             supportFragmentManager.fragments.forEach { hide(it) }
@@ -100,6 +143,7 @@ class MainActivity : AppCompatActivity() {
         updateChrome(id, false)
         refreshBadge()
     }
+    // MATERI-14: atur judul toolbar dan navigationIcon sesuai tab atau form.
     private fun updateChrome(id: Int, form: Boolean) {
         backForm.isEnabled = form
         binding.bottomNavigation.visibility = if (form) View.GONE else View.VISIBLE
@@ -130,10 +174,10 @@ class MainActivity : AppCompatActivity() {
         }
         updateChrome(binding.bottomNavigation.selectedItemId, true)
     }
-    fun showReports(mine: Boolean = true, query: String = "") {
+    fun showReports(mine: Boolean = true) {
         navigate(R.id.nav_pengaduan)
         supportFragmentManager.executePendingTransactions()
-        (supportFragmentManager.findFragmentByTag(R.id.nav_pengaduan.toString()) as? PengaduanFragment)?.filter(mine, query)
+        (supportFragmentManager.findFragmentByTag(R.id.nav_pengaduan.toString()) as? PengaduanFragment)?.filter(mine)
     }
     fun refreshBadge() {
         if (!::binding.isInitialized) return
@@ -147,6 +191,7 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         if (savedInstanceState.getBoolean("form", false)) showForm()
     }
+    // MATERI-03: onResume dipanggil saat Activity kembali aktif; perbarui badge notifikasi.
     override fun onResume() {
         super.onResume()
         refreshBadge()
@@ -158,6 +203,8 @@ class MainActivity : AppCompatActivity() {
         }
         super.onSaveInstanceState(outState)
     }
+    // MATERI-07 / MATERI-09: dialog konfirmasi; sesi baru dihapus setelah tombol positif diklik.
+    // Salin fungsi logout utuh; USER_SESSION, isLogin, USERNAME harus sama dengan kode login/splash.
     fun logout() {
         AlertDialog.Builder(this).setTitle("Keluar dari SiComplaint?")
             .setMessage("Tersimpan")

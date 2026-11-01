@@ -40,6 +40,7 @@
     <Space
         android:layout_width="1dp"
         android:layout_height="16dp" />
+    <!-- MATERI-02: EditText menerima input; Kotlin membaca text.toString(). -->
     <EditText
         android:id="@+id/etFilter"
         android:layout_width="match_parent"
@@ -52,9 +53,42 @@
         android:textSize="12sp"
         android:singleLine="true"
         android:inputType="text" />
+    <!-- MATERI-15: singleSelection membatasi maksimal satu pilihan, bukan mewajibkan satu pilihan. -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSemua"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Semua" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipDiproses"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diproses" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipMenunggu"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menunggu" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSelesai"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selesai" />
+    </com.google.android.material.chip.ChipGroup>
     <Space
         android:layout_width="1dp"
-        android:layout_height="16dp" />
+        android:layout_height="12dp" />
     <TextView
         android:id="@+id/tvHeading"
         style="@style/Text.SiComplaint.Heading"

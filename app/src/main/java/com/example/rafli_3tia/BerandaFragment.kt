@@ -2,13 +2,13 @@ package com.example.rafli_3tia
 
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.rafli_3tia.databinding.FragmentBerandaBinding
 import com.example.rafli_3tia.databinding.HeaderBerandaBinding
 
+// MATERI-12: Fragment(R.layout.fragment_beranda) otomatis menyediakan view tanpa override onCreateView.
 class BerandaFragment : Fragment(R.layout.fragment_beranda) {
     private var header: HeaderBerandaBinding? = null
     override fun onDestroyView() {
@@ -29,28 +29,30 @@ class BerandaFragment : Fragment(R.layout.fragment_beranda) {
         }
         h.tvAjakan.text = "Ada yang perlu\ndilaporkan?"
         b.listKategori.addHeaderView(h.root, null, false)
+        // MATERI-10 MULAI: List kategori -> ArrayAdapter layout bawaan -> ListView.
+        // Salin pembuatan adapter dan b.listKategori.adapter = adapter; import android.widget.ArrayAdapter.
         val adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_list_item_1,
             PengaduanRepository.kategori
         )
         b.listKategori.adapter = adapter
+        // MATERI-10: posisi data dikurangi headerViewsCount karena ListView punya header tambahan.
         b.listKategori.setOnItemClickListener { _, _, position, _ ->
             val index = position - b.listKategori.headerViewsCount
             if (index in PengaduanRepository.kategori.indices) Toast.makeText(requireContext(), "Kategori dipilih: ${PengaduanRepository.kategori[index]}", Toast.LENGTH_SHORT).show()
         }
-        listOf(h.category0, h.category1, h.category2, h.category3).forEachIndexed { i, button ->
-            button.setOnClickListener { (requireActivity() as MainActivity).showForm(PengaduanRepository.kategori[i]) }
+        // MATERI-15 GRID: listener enam tombol GridLayout di header_beranda; Toast lalu buka form kategori.
+        listOf(h.category0, h.category1, h.category2, h.category3, h.category4, h.category5).forEachIndexed { i, button ->
+            button.setOnClickListener {
+                Toast.makeText(requireContext(), "Kategori: ${PengaduanRepository.kategori[i]}", Toast.LENGTH_SHORT).show()
+                (requireActivity() as MainActivity).showForm(PengaduanRepository.kategori[i])
+            }
+        }
+        h.btnTutorial.setOnClickListener {
+            startActivity(android.content.Intent(requireContext(), TutorialActivity::class.java))
         }
         h.btnDaftarPublik.setOnClickListener { (requireActivity() as MainActivity).showReports(false) }
-        h.etCari.setOnEditorActionListener { _, action, _ ->
-            if (action == EditorInfo.IME_ACTION_SEARCH) {
-                val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
-                imm.hideSoftInputFromWindow(view.windowToken, 0)
-                (requireActivity() as MainActivity).showReports(false, h.etCari.text.toString().trim())
-                true
-            } else false
-        }
         refresh()
     }
     override fun onHiddenChanged(hidden: Boolean) {

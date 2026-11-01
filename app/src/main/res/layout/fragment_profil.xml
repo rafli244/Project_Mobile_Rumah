@@ -217,6 +217,34 @@
                             android:src="@drawable/ic_figma_chevron"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/btnTutorial"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/primary"
+                            android:importantForAccessibility="no"
+                            android:layout_marginEnd="16dp" />
+                        <TextView
+                            style="@style/Text.SiComplaint.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Panduan Aplikasi (Tutorial)" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_figma_chevron"
+                            android:importantForAccessibility="no" />
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <Space

@@ -84,12 +84,9 @@ class LginActivity : AppCompatActivity() {
         }
 
         binding.tvDaftar.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("Panduan Akun")
-                .setMessage("Sesuai aturan praktikum:\nAnda dapat langsung login dengan password yang sama persis dengan username (misal: user / user),\natau gunakan akun demo: rafli / 12345.")
-                .setPositiveButton("Mengerti", null)
-                .show()
+            Toast.makeText(this, "Daftar akun belum dipelajari", Toast.LENGTH_SHORT).show()
         }
+
 
         // MATERI-05 MULAI: salin listener btnLogin utuh untuk klik, input, validasi dan Toast.
         // Pasangan XML: editTextText, editTextTextPassword, tilUsername, tilPassword, btnLogin.

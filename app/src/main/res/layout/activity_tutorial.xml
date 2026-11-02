@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Wadah tutorial: pasangan TutorialActivity, TutorialFragmentAdapter dan tiga halaman Fragment.
+2. Dependency ViewPager2/dotsindicator harus tersedia.
+3. Pasang adapter dalam Kotlin terlebih dahulu, lalu dotIndicator.attachTo(viewPager).
+4. Ini satu Activity; setiap Fragment di pager mempunyai layout terpisah.
+-->
+
 <!-- MATERI-02: ConstraintLayout memakai constraint untuk menentukan posisi anak. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

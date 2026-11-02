@@ -1,3 +1,10 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. ChipGroup: salin grup beserta semua Chip anak dan id-nya.
+2. Pasangan Kotlin PengaduanFragment: setOnCheckedStateChangeListener.
+3. Untuk soal chip dasar cukup Toast; refresh aplikasi asli butuh repository/model/adapter.
+4. ListView memakai PengaduanAdapter dan item_pengaduan.xml.
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Shape untuk sudut/garis/padding; terapkan sebagai android:background pada view.
+2. Salin ke res/drawable; nama file menjadi nama resource.
+-->
+
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <!-- Warna solid untuk latar belakang -->

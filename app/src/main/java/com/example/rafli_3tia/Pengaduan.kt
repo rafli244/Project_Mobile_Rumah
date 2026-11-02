@@ -1,6 +1,16 @@
 package com.example.rafli_3tia
 
 /*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 01,11
+ * TUJUAN: model satu laporan, bukan daftar dan bukan komponen tampilan.
+ * 1. Buat file Kotlin untuk data class; ubah nama/properti sesuai data soal.
+ * 2. Samakan tipe dan nama properti dengan constructor serta adapter yang membacanya.
+ * 3. Parameter bernilai default boleh tidak diisi ketika membuat objek.
+ * 4. Array/List<Pengaduan> menampung banyak objek; data class ini hanya mewakili satu item.
+ * UJI: buat satu objek, lalu tampilkan propertinya melalui adapter atau TextView.
+ */
+
+/*
  * =====================================================================================
  * DATA CLASS (MODEL DATA UNTUK LISTVIEW)
  * =====================================================================================

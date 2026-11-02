@@ -1,3 +1,10 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Form login: salin input beserta TextInputLayout dan tombol sesuai kebutuhan.
+2. Pasangan Kotlin LginActivity: id editTextText, editTextTextPassword, btnLogin.
+3. Ganti nama layout -> ganti import ActivityLginBinding pada project baru.
+4. Style Widget.SiComplaint.* dan Text.SiComplaint.* ada di values/figma_styles.xml; ikutkan warna/font atau sesuaikan resource.
+-->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Drawable alternatif; periksa referensi layout sebelum memilih file ini.
+2. Header utama project memakai bg_header_wafe (huruf f), bukan otomatis file wave ini.
+3. Jika mengganti nama resource di project baru, samakan pemanggilan @drawable-nya.
+-->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="100dp"
     android:height="100dp"

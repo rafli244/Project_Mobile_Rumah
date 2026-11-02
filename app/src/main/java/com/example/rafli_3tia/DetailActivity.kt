@@ -1,6 +1,18 @@
 package com.example.rafli_3tia
 
 /*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 03,04,06,14
+ * TUJUAN: contoh pasangan Intent pengirim dan penerima data.
+ * 1. Buat Activity detail + layout lalu daftarkan Activity di Manifest.
+ * 2. open(context,id) adalah pengirim: salin helper ini atau pola Intent/putExtra-nya.
+ * 3. Penerima membaca getStringExtra di onCreate; key PENGADUAN_ID harus sama.
+ * 4. Jika soal hanya menampilkan String, tampilkan extra ke TextView; repository tidak diperlukan.
+ * 5. toolbarDetail membutuhkan navigationIcon; listener finish menutup detail.
+ * PASANGAN asli: activity_detail.xml, PengaduanRepository, fungsi statusLabel/statusBackground.
+ * UJI: kirim dua ID berbeda; detail sesuai pilihan, tombol kembali berfungsi.
+ */
+
+/*
  * =====================================================================================
  * DETAIL ACTIVITY & TERIMA DATA DARI INTENT
  * =====================================================================================

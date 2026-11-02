@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Pasangan ProfilFragment: nama dibaca dari Preferences dan diisi ke TextView.
+2. Dialog edit dibuat melalui Kotlin; bukan komponen yang tertulis di XML ini.
+3. Aksi logout/riwayat/tutorial bergantung fungsi atau Activity tujuan di project baru.
+-->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

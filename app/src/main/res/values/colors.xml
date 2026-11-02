@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Definisi warna yang dipakai layout/drawable/style.
+2. Salin hanya warna yang dirujuk atau ganti referensi dengan warna project baru.
+3. Gabungkan ke resources yang sudah ada; jangan membuat dua root resources dalam satu file.
+-->
+
 <resources>
     <!-- Basic Colors -->
     <color name="black">#FF000000</color>

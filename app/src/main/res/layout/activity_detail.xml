@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Layout penerima data: pasangan DetailActivity.
+2. Intent dibaca dalam Kotlin, lalu text diisi ke komponen di layout ini.
+3. Toolbar membutuhkan navigationIcon dan listener finish untuk aksi kembali.
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

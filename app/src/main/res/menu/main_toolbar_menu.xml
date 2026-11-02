@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Resource menu Toolbar: dipasang dengan toolbar.inflateMenu pada MainActivity.
+2. id action_tutorial dipakai listener untuk membuka TutorialActivity.
+3. Jika soal meminta MenuProvider, contoh itu belum dipakai di project ini.
+-->
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item

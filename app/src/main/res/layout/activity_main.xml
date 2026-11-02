@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Wadah tab: salin Toolbar, FragmentContainerView dan BottomNavigationView.
+2. Ikutkan menu/bottom_navigation.xml; id item harus sama dengan mapping when di Activity.
+3. Sediakan listener -> showTab -> display; fitur badge/form memerlukan helper tambahan.
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

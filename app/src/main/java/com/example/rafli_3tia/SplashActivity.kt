@@ -1,6 +1,18 @@
 package com.example.rafli_3tia
 
 /*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 03,04,06,07,08
+ * TUJUAN: layar pembuka dua detik, cek sesi, lalu pilih tujuan.
+ * 1. Buat SplashActivity dan activity_splash.xml; sesuaikan import ActivitySplashBinding.
+ * 2. Salin binding + onCreate; ambil splashDuration dan blok Handler sampai }, splashDuration).
+ * 3. Import Handler dan Looper dari android.os, Intent dari android.content.
+ * 4. Jika tanpa login, callback cukup menuju Activity tujuan; jika dengan login samakan USER_SESSION.
+ * 5. Daftarkan Splash sebagai satu-satunya MAIN/LAUNCHER (exported=true) di Manifest.
+ * 6. Pertahankan finish setelah startActivity agar Back tidak kembali ke splash.
+ * UJI: buka dari kondisi tertutup, tunggu dua detik; sesudah logout harus menuju Login.
+ */
+
+/*
  * =====================================================================================
  * SPLASH SCREEN & AUTO-LOGIN (SHARED PREFERENCES)
  * =====================================================================================
@@ -59,6 +71,7 @@ class SplashActivity : AppCompatActivity() {
 
         // MATERI-08 MULAI: Handler main thread menjadwalkan blok setelah splashDuration (2000 ms).
         // Ini penjadwalan, bukan Thread.sleep; salin sampai }, splashDuration).
+        // PETUNJUK: SALIN SATU BLOK UTUH sampai }, splashDuration); properti durasi dan import Handler/Looper ikut dibutuhkan.
         Handler(Looper.getMainLooper()).postDelayed({
             // 1. Ambil data sesi dari SharedPreferences
             // MATERI-07: baca isLogin; default false ketika sesi belum tersimpan.

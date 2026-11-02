@@ -1,6 +1,20 @@
 package com.example.rafli_3tia
 
 /*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 01,03,06,07,09,12,13,14
+ * TUJUAN: wadah tab Fragment, toolbar dan konfirmasi logout; pilih blok sesuai soal.
+ * 1. Untuk bottom navigation siapkan activity_main.xml + menu/bottom_navigation.xml.
+ * 2. Buat Fragment tiap tab; salin listener bottomNavigation, showTab dan display sebagai satu alur.
+ * 3. Ganti id menu/container dan mapping when. Fungsi asli juga memakai updateChrome/refreshBadge.
+ * 4. Bila hanya perlu tab sederhana, sederhanakan pemanggilan fitur lain DI PROJECT BARU.
+ * 5. Untuk toolbar ambil inflateMenu + listener + resource menu; untuk dialog ambil logout utuh.
+ * 6. username menerima EXTRA_USERNAME dan membaca USER_SESSION; samakan key dengan Login/Splash.
+ * JANGAN salin seluruh file untuk soal satu fitur: ada ketergantungan form, notifikasi dan repository.
+ * MenuProvider BELUM dipakai; onCreateView manual BELUM ada. Cari contoh itu di modul.
+ * UJI: tab sesuai label, judul berubah, Batal logout tetap di layar, setuju logout menuju Login.
+ */
+
+/*
  * =====================================================================================
  * BOTTOM NAVIGATION, FRAGMENT TRANSACTIONS, & ALERTDIALOG LOGOUT
  * =====================================================================================
@@ -106,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         binding.fabBuat.setOnClickListener { showForm() }
         // MATERI-14 / MATERI-15: back dan menu toolbar aktif. Ini memakai inflateMenu, bukan MenuProvider.
         binding.toolbarMain.setNavigationOnClickListener { backForm.handleOnBackPressed() }
+        // PETUNJUK: PASANGAN XML res/menu/main_toolbar_menu.xml; ganti resource menu jika project baru berbeda.
         binding.toolbarMain.inflateMenu(R.menu.main_toolbar_menu)
         binding.toolbarMain.setOnMenuItemClickListener { menuItem ->
             if (menuItem.itemId == R.id.action_tutorial) {
@@ -132,6 +147,7 @@ class MainActivity : AppCompatActivity() {
             }
         }.commit()
     }
+    // PETUNJUK: SALIN BERSAMA display: ubah pasangan id menu -> class Fragment; updateChrome/refreshBadge adalah helper aplikasi.
     private fun showTab(id: Int) {
         showingForm = false
         display(when (id) {
@@ -205,6 +221,7 @@ class MainActivity : AppCompatActivity() {
     }
     // MATERI-07 / MATERI-09: dialog konfirmasi; sesi baru dihapus setelah tombol positif diklik.
     // Salin fungsi logout utuh; USER_SESSION, isLogin, USERNAME harus sama dengan kode login/splash.
+    // PETUNJUK: TEMPATKAN DI DALAM CLASS ACTIVITY, di luar onCreate; panggil dari listener tombol logout.
     fun logout() {
         AlertDialog.Builder(this).setTitle("Keluar dari SiComplaint?")
             .setMessage("Tersimpan")

@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Style tampilan SiComplaint; dirujuk banyak layout.
+2. Salin style beserta parent dan resource warna/font yang diperlukan, atau gunakan style project baru.
+3. Jangan menyalin nama style saja tanpa definisinya.
+-->
 <resources>
  <style name="Text.SiComplaint.Body" parent="@android:style/TextAppearance"><item name="android:fontFamily">@font/inter_24pt_regular</item><item name="android:textColor">@color/text_dark</item><item name="android:textSize">14sp</item></style>
  <style name="Text.SiComplaint.Heading" parent="Text.SiComplaint.Body"><item name="android:fontFamily">@font/poppins_semibold</item><item name="android:textSize">22sp</item></style>

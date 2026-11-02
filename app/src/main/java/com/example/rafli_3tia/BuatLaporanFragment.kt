@@ -1,5 +1,17 @@
 package com.example.rafli_3tia
 
+/*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 04,05,09,10,11,12
+ * TUJUAN: validasi banyak input, Spinner kategori, buat model dan dialog hasil.
+ * 1. Siapkan layout fragment_buat_laporan.xml, binding dan id yang digunakan.
+ * 2. ArrayAdapter pada file ini mengisi SPINNER; contoh ListView ada di BerandaFragment.
+ * 3. Untuk validasi ambil listener btnKirim dari pembacaan fields sampai return yang diperlukan.
+ * 4. Sesuaikan daftar fields, pilihan Spinner dan CheckBox dengan soal.
+ * 5. Pembuatan Pengaduan bergantung model, repository dan username host; jangan tempel tanpa pasangannya.
+ * 6. AlertDialog di Fragment memakai requireContext, bukan this.
+ * UJI: input kosong, kategori belum dipilih, konfirmasi belum dicentang, lalu semua valid.
+ */
+
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter

@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Ini layout satu baris; pasangan NotifikasiAdapter di NotifikasiFragment.kt.
+2. ItemNotifikasiBinding dibuat otomatis dari nama layout ini.
+3. Semua tampilan yang berubah harus diisi ulang dalam getView ketika view didaur ulang.
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

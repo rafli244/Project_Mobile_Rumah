@@ -1,6 +1,19 @@
 package com.example.rafli_3tia
 
 /*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 03,04,05,06,07
+ * TUJUAN: form input -> validasi -> simpan sesi -> pindah Activity.
+ * 1. Di project baru buat Activity dan layout form; aktifkan viewBinding pada Gradle app.
+ * 2. Siapkan id input, TextInputLayout dan tombol seperti activity_lgin.xml.
+ * 3. Salin deklarasi binding ke dalam class; inflate dan setContentView ke onCreate setelah super.
+ * 4. Salin listener btnLogin ke onCreate setelah binding siap; ubah aturan sukses sesuai soal.
+ * 5. Ganti package, import binding, nama Activity tujuan dan id input sesuai project baru.
+ * 6. Jika soal hanya validasi, ambil cek isEmpty/error/Toast; tidak wajib ikut login dan remember.
+ * PASANGAN: activity_lgin.xml; Activity tujuan di Manifest; tema/dependency Material.
+ * UJI: kosong -> error, salah -> gagal, benar -> tujuan; kode ini autentikasi demo lokal.
+ */
+
+/*
  * =====================================================================================
  * FORM LOGIN, CARDVIEW, TOAST, & SIMPAN SHARED PREFERENCES
  * =====================================================================================
@@ -41,6 +54,7 @@ class LginActivity : AppCompatActivity() {
         // Inisialisasi ViewBinding
         // MATERI-04: activity_lgin.xml -> ActivityLginBinding; inflate lalu pasang binding.root.
         // Aktifkan buildFeatures { viewBinding = true } pada Gradle module app.
+        // PETUNJUK: TEMPEL DI onCreate: sesudah super.onCreate; ganti tipe binding mengikuti nama layout baru.
         binding = ActivityLginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -79,6 +93,7 @@ class LginActivity : AppCompatActivity() {
 
         // MATERI-05 MULAI: salin listener btnLogin utuh untuk klik, input, validasi dan Toast.
         // Pasangan XML: editTextText, editTextTextPassword, tilUsername, tilPassword, btnLogin.
+        // PETUNJUK: SALIN BLOK LISTENER SAMPAI PENUTUPNYA: tempel setelah binding siap; input dibaca saat klik.
         binding.btnLogin.setOnClickListener {
             // MATERI-01: val, String, trim; nilai input dibaca ketika tombol diklik.
             val usernameInput = binding.editTextText.text.toString().trim()
@@ -117,6 +132,7 @@ class LginActivity : AppCompatActivity() {
                 // 3. Simpan Sesi ke SharedPreferences
                 // MATERI-07: edit -> putBoolean/putString -> apply menyimpan sesi key-value.
                 val sharedPreferences = getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
+                // PETUNJUK: SALIN BERSAMA getSharedPreferences DI ATAS: put menyiapkan nilai; apply menerapkan penyimpanan.
                 with(sharedPreferences.edit()) {
                     putBoolean("isLogin", true)
                     putString("USERNAME", usernameInput)
@@ -131,6 +147,7 @@ class LginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra("EXTRA_USERNAME", usernameInput)
                 }
+                // PETUNJUK: ACTIVITY TUJUAN HARUS ADA DI MANIFEST. Extra dibaca dengan key yang sama di penerima.
                 startActivity(intent)
                 finish() // Tutup LginActivity agar tidak bisa di-back
             } else {

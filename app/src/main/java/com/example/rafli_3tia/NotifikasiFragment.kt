@@ -1,5 +1,16 @@
 package com.example.rafli_3tia
 
+/*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 03,04,11,12
+ * TUJUAN: contoh kedua custom BaseAdapter dan refresh tampilan Fragment.
+ * 1. Salin model/repository notifikasi, layout fragment_notifikasi dan item_notifikasi jika memakai fitur utuh.
+ * 2. Adapter private di file yang sama; untuk soal custom adapter sederhana lihat PengaduanAdapter.
+ * 3. getView mengisi teks, titik dibaca dan warna; convertView mendaur ulang tampilan.
+ * 4. Klik baris memerlukan reportId, DetailActivity dan repository untuk menandai dibaca.
+ * 5. onResume dan onHiddenChanged memanggil refresh ketika halaman aktif/ditampilkan kembali.
+ * UJI: klik notifikasi -> detail benar, penanda dibaca berubah.
+ */
+
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup

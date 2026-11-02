@@ -1,5 +1,15 @@
 package com.example.rafli_3tia
 
+/*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 01,10,11
+ * TUJUAN: menyediakan daftar contoh dan menyimpan laporan di memori.
+ * 1. Untuk daftar sederhana cukup ambil kategori = listOf(...), ganti isi sesuai soal.
+ * 2. Bila memakai simpan/cari/riwayat, ikutkan model Pengaduan dan inisialisasi listLaporan.
+ * 3. MutableList bisa ditambah; antarmuka List yang dikembalikan tidak memberi operasi add.
+ * 4. Data laporan tidak disimpan ke database/SharedPreferences; hilang ketika proses berakhir.
+ * UJI: tambah laporan lalu baca daftar dalam proses yang sama.
+ */
+
 import android.content.Context
 import java.util.Locale
 

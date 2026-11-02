@@ -1,5 +1,18 @@
 package com.example.rafli_3tia
 
+/*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 04,10,12,15
+ * TUJUAN: contoh ListView sederhana + header + enam tombol kategori.
+ * 1. Buat Fragment dan fragment_beranda.xml dengan ListView; bind(view) di onViewCreated.
+ * 2. Untuk daftar sederhana ambil ArrayAdapter sampai listKategori.adapter = adapter.
+ * 3. Ganti PengaduanRepository.kategori dengan daftar data soal; import android.widget.ArrayAdapter.
+ * 4. Header adalah fitur tambahan. Tanpa addHeaderView, posisi data langsung position.
+ * 5. Jika ikut memakai header, salin inflate HeaderBerandaBinding dan addHeaderView sebelum adapter.
+ * 6. Grid butuh header_beranda.xml; listener category0..5 membuka showForm milik MainActivity.
+ * 7. Di project baru ganti aksi showForm sesuai soal atau siapkan fungsi host yang sama.
+ * UJI: semua item tampil; posisi klik benar; setiap tombol kategori menjalankan aksi yang sesuai.
+ */
+
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -36,9 +49,11 @@ class BerandaFragment : Fragment(R.layout.fragment_beranda) {
             android.R.layout.simple_list_item_1,
             PengaduanRepository.kategori
         )
+        // PETUNJUK: TEMPEL SESUDAH PEMBUATAN ADAPTER: tanpa baris ini data tidak terhubung ke ListView.
         b.listKategori.adapter = adapter
         // MATERI-10: posisi data dikurangi headerViewsCount karena ListView punya header tambahan.
         b.listKategori.setOnItemClickListener { _, _, position, _ ->
+            // PETUNJUK: HANYA KARENA ADA HEADER: pada daftar tanpa header gunakan position langsung.
             val index = position - b.listKategori.headerViewsCount
             if (index in PengaduanRepository.kategori.indices) Toast.makeText(requireContext(), "Kategori dipilih: ${PengaduanRepository.kategori[index]}", Toast.LENGTH_SHORT).show()
         }

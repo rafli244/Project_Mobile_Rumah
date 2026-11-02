@@ -1,5 +1,16 @@
 package com.example.rafli_3tia
 
+/*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 04,05,07,09,12
+ * TUJUAN: contoh membaca preferensi dan dialog edit nama.
+ * 1. Bind layout fragment_profil di onViewCreated; sesuaikan id dan nama binding.
+ * 2. refresh membaca USER_SESSION/USERNAME lalu mengisi TextView; samakan key dengan login.
+ * 3. editProfile membuat EditText + LinearLayout secara Kotlin, lalu memasukkannya ke dialog.
+ * 4. Listener tombol Simpan dipasang setelah dialog tampil agar validasi kosong tidak menutup dialog.
+ * 5. Aksi logout/showReports bergantung MainActivity; ganti host/aksi pada project baru.
+ * UJI: Simpan nama kosong tetap membuka dialog, nama valid tersimpan dan tampil.
+ */
+
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -50,6 +61,7 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         val name = EditText(requireContext()).apply { hint = "Nama lengkap"; setText(currentName); inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS }
         box.addView(name)
         val dialog = AlertDialog.Builder(requireContext()).setTitle("Edit Nama Pengguna").setView(box).setNegativeButton("Batal", null).setPositiveButton("Simpan", null).create()
+        // PETUNJUK: VALIDASI DIALOG: listener ini menahan penutupan otomatis ketika nama kosong.
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (name.text.isNullOrBlank()) name.error = "Nama wajib diisi"
             else {

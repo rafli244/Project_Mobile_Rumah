@@ -1,3 +1,10 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Header tambahan ListView: di-inflate BerandaFragment, bukan layout Activity utama.
+2. GridLayout berisi enam kategori; salin grid lengkap dan listener category0 sampai category5.
+3. bg_header_wafe adalah vector di drawable; salin file rujukannya juga.
+4. Jika menyalin header lengkap, ikutkan id/resource dan aksi host yang digunakan Kotlin.
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -1,5 +1,17 @@
 package com.example.rafli_3tia
 
+/*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 01,04,11,12,15
+ * TUJUAN: ChipGroup memilih status, refresh menampilkan daftar melalui custom adapter.
+ * 1. Salin ChipGroup dari fragment_pengaduan.xml ke layout baru dan sesuaikan binding.
+ * 2. Untuk soal chip dasar, ambil listener chipGroupFilter; Toast sudah menunjukkan pilihan.
+ * 3. refresh adalah logika aplikasi. Jika dipanggil, salin juga kebutuhan repository/adapter/model.
+ * 4. Samakan id chip dengan mapping selectedStatus; null berarti semua status.
+ * 5. Fragment(R.layout...) sudah membuat view; onViewCreated cukup Binding.bind(view).
+ * 6. requireActivity() as MainActivity mengharuskan host MainActivity yang punya properti/fungsi terkait.
+ * UJI: ganti tiap chip; satu pilihan maksimum; daftar/Toast sesuai status.
+ */
+
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment

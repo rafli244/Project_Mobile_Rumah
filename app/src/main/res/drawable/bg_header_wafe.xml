@@ -1,3 +1,9 @@
+<!--
+PANDUAN SALIN XML KE PROJECT BARU
+1. Vector header gelombang; dipanggil @drawable/bg_header_wafe di header_beranda.xml.
+2. Salin ke res/drawable; pertahankan nama atau ubah semua referensinya.
+3. pathData menentukan kurva, fillColor menentukan warna; ikutkan color/primary.
+-->
 <!-- MATERI-15 DRAWABLE: vector gelombang; pathData C adalah kurva Bezier kubik.
      Dipakai header_beranda.xml; nama wafe harus sama persis dengan referensi drawable. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"

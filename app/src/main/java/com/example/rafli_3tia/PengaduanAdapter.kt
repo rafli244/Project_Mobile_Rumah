@@ -1,6 +1,19 @@
 package com.example.rafli_3tia
 
 /*
+ * PANDUAN PINDAH KE PROJECT BARU | MATERI 04,11
+ * TUJUAN: custom BaseAdapter untuk satu baris ListView.
+ * 1. Salin Pengaduan.kt dan item_pengaduan.xml; ganti kolom/id sesuai soal.
+ * 2. Salin class adapter utuh: constructor, getCount/getItem/getItemId, ViewHolder, getView.
+ * 3. Ganti ItemPengaduanBinding dengan binding layout baris baru.
+ * 4. getView membaca satu model lalu mengisi SEMUA tampilan yang berubah agar view daur ulang benar.
+ * 5. Jika memakai adapter asli, salin fungsi statusLabel/categoryIcon di bawah dan resource terkait.
+ * 6. Pasang adapter ke ListView seperti PengaduanFragment; callback onDetail menentukan aksi klik.
+ * UJI: scroll berulang, judul/gambar/status tidak tertukar; klik detail sesuai baris.
+ * Bukan custom ArrayAdapter: kelas ini mewarisi BaseAdapter.
+ */
+
+/*
  * =====================================================================================
  * CUSTOM LISTVIEW ADAPTER & ITEM CLICK LISTENER
  * =====================================================================================
@@ -46,6 +59,7 @@ class PengaduanAdapter(
             row = convertView
             holder = row.tag as ViewHolder
         }
+        // PETUNJUK: MODEL SATU BARIS: sesuaikan p.judul/dll dengan properti data class baru.
         val p = getItem(position)
         with(holder.binding) {
             tvJudul.text = p.judul
@@ -68,6 +82,7 @@ class PengaduanAdapter(
             tvStatus.setTextColor(ContextCompat.getColor(parent.context, R.color.white))
             ivLaporan.contentDescription = "Ikon laporan ${p.kategori}"
             btnDetail.contentDescription = "Detail ${p.judul}"
+            // PETUNJUK: CALLBACK: aksi detail disediakan pembuat adapter; jangan hardcode Activity baru tanpa kebutuhan.
             btnDetail.setOnClickListener { onDetail(p) }
         }
         return row

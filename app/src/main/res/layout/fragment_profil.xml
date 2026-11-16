@@ -2,7 +2,7 @@
 PANDUAN SALIN XML KE PROJECT BARU
 1. Pasangan ProfilFragment: nama dibaca dari Preferences dan diisi ke TextView.
 2. Dialog edit dibuat melalui Kotlin; bukan komponen yang tertulis di XML ini.
-3. Aksi logout/riwayat/tutorial bergantung fungsi atau Activity tujuan di project baru.
+3. Aksi logout/riwayat/tentang aplikasi bergantung fungsi atau Activity tujuan di project baru.
 -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -224,7 +224,7 @@ PANDUAN SALIN XML KE PROJECT BARU
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/btnTutorial"
+                        android:id="@+id/btnAbout"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:orientation="horizontal"
@@ -244,7 +244,35 @@ PANDUAN SALIN XML KE PROJECT BARU
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Panduan Aplikasi (Tutorial)" />
+                            android:text="@string/about_app_title" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_figma_chevron"
+                            android:importantForAccessibility="no" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/btnWeb"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_web"
+                            app:tint="@color/primary"
+                            android:importantForAccessibility="no"
+                            android:layout_marginEnd="16dp" />
+                        <TextView
+                            style="@style/Text.SiComplaint.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Portal SP4N-LAPOR!" />
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"

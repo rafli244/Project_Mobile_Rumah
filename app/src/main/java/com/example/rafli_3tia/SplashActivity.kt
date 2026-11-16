@@ -79,18 +79,18 @@ class SplashActivity : AppCompatActivity() {
             val isLogin = sharedPreferences.getBoolean("isLogin", false)
             val savedUsername = sharedPreferences.getString("USERNAME", "Rafli")
 
-            // 2. Tentukan tujuan intent berdasarkan status isLogin
-            // MATERI-01 / MATERI-06: if-else menentukan Activity tujuan; finish menutup Splash.
-            if (isLogin) {
-                // Sudah login -> Langsung ke MainActivity
-                val intent = Intent(this, MainActivity::class.java).apply {
-                    putExtra("EXTRA_USERNAME", savedUsername)
-                }
-                startActivity(intent)
+            val destination = if (isLogin) {
+                Intent(this, MainActivity::class.java).putExtra("EXTRA_USERNAME", savedUsername)
             } else {
-                // Belum login -> Arahkan ke Halaman Login
-                val intent = Intent(this, LginActivity::class.java)
-                startActivity(intent)
+                Intent(this, LginActivity::class.java)
+            }
+
+            val onboarding = getSharedPreferences("APP_ONBOARDING", MODE_PRIVATE)
+            if (onboarding.getBoolean("tutorial_shown", false)) {
+                startActivity(destination)
+            } else {
+                startActivities(arrayOf(destination, Intent(this, TutorialActivity::class.java)))
+                onboarding.edit().putBoolean("tutorial_shown", true).apply()
             }
 
             // Tutup SplashActivity agar tidak bisa kembali dengan tombol back

@@ -123,10 +123,17 @@ class MainActivity : AppCompatActivity() {
         // PETUNJUK: PASANGAN XML res/menu/main_toolbar_menu.xml; ganti resource menu jika project baru berbeda.
         binding.toolbarMain.inflateMenu(R.menu.main_toolbar_menu)
         binding.toolbarMain.setOnMenuItemClickListener { menuItem ->
-            if (menuItem.itemId == R.id.action_tutorial) {
-                startActivity(Intent(this, TutorialActivity::class.java))
-                true
-            } else false
+            when (menuItem.itemId) {
+                R.id.action_web -> {
+                    startActivity(Intent(this, WebViewActivity::class.java))
+                    true
+                }
+                R.id.action_about -> {
+                    startActivity(Intent(this, AboutActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
         if (savedInstanceState == null) navigate(R.id.nav_beranda)
         else {

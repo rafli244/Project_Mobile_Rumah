@@ -1,89 +1,154 @@
 package com.example.rafli_3tia
 
 /*
- * PANDUAN PINDAH KE PROJECT BARU | MATERI 01,04,11,12,15
- * TUJUAN: ChipGroup memilih status, refresh menampilkan daftar melalui custom adapter.
- * 1. Salin ChipGroup dari fragment_pengaduan.xml ke layout baru dan sesuaikan binding.
- * 2. Untuk soal chip dasar, ambil listener chipGroupFilter; Toast sudah menunjukkan pilihan.
- * 3. refresh adalah logika aplikasi. Jika dipanggil, salin juga kebutuhan repository/adapter/model.
- * 4. Samakan id chip dengan mapping selectedStatus; null berarti semua status.
- * 5. Fragment(R.layout...) sudah membuat view; onViewCreated cukup Binding.bind(view).
- * 6. requireActivity() as MainActivity mengharuskan host MainActivity yang punya properti/fungsi terkait.
- * UJI: ganti tiap chip; satu pilihan maksimum; daftar/Toast sesuai status.
+ * =====================================================================================
+ * IMPLEMENTASI TABLAYOUT, VIEWPAGER2, TABLAYOUTMEDIATOR & BADGES
+ * =====================================================================================
+ * Materi  : Pertemuan 10 Praktikum Mobile Programming
+ * Konsep  :
+ *   1. TabLayout: Menampilkan deretan tab judul, ikon, dan badge di bagian atas.
+ *   2. ViewPager2: Area swipe halaman yang dikelola oleh PengaduanTabsAdapter.
+ *   3. TabLayoutMediator: Menghubungkan TabLayout dan ViewPager2 secara dua arah.
+ *   4. Kustomisasi Tab: Menambahkan icon drawable dan badge angka real-time.
+ *   5. Filter Terintegrasi: Search bar & ChipGroup memfilter isi RecyclerView di tiap tab.
+ * =====================================================================================
  */
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import com.example.rafli_3tia.databinding.FragmentPengaduanBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
-// MATERI-12: layout otomatis dari constructor Fragment(R.layout.fragment_pengaduan).
-// onCreateView BELUM dioverride; onViewCreated dipakai setelah layout tersedia.
 open class PengaduanFragment : Fragment(R.layout.fragment_pengaduan) {
-    protected open val history = false
-    private var mine = true
-    // MATERI-12 / MATERI-04: bind(view) menghubungkan view yang sudah dibuat ke ViewBinding.
-    // Jangan inflate layout kedua kali di sini; Activity memakai inflate + setContentView.
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val b = FragmentPengaduanBinding.bind(view)
-        mine = savedInstanceState?.getBoolean("mine", true) ?: true
-        b.rgScope.check(if (mine) R.id.rbMilikSaya else R.id.rbMasyarakat)
 
-        // MATERI-15 CHIPGROUP: checkedIds.firstOrNull -> Chip terpilih -> Toast -> refresh filter.
-        b.chipGroupFilter.setOnCheckedStateChangeListener { group, checkedIds ->
-            val selectedId = checkedIds.firstOrNull()
-            if (selectedId != null) {
-                val chip = group.findViewById<com.google.android.material.chip.Chip>(selectedId)
-                android.widget.Toast.makeText(requireContext(), "Filter: ${chip.text}", android.widget.Toast.LENGTH_SHORT).show()
-            }
-            refresh()
-        }
-        refresh()
-    }
-    fun filter(own: Boolean) {
-        mine = own
-        view?.let {
-            val b = FragmentPengaduanBinding.bind(it)
-            b.rgScope.check(if (own) R.id.rbMilikSaya else R.id.rbMasyarakat)
-        }
-        refresh()
-    }
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean("mine", mine)
-        super.onSaveInstanceState(outState)
-    }
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (!hidden) refresh()
-    }
-    private fun refresh() {
-        val b = view?.let { FragmentPengaduanBinding.bind(it) } ?: return
-        val repository = PengaduanRepository(requireContext())
-        val all = if (mine || history) {
-            repository.riwayat((requireActivity() as MainActivity).username)
-        } else {
-            repository.semua().reversed()
-        }
-        // MATERI-15 CHIPGROUP: mapping id chip menjadi status; null berarti tanpa batasan status.
-        val selectedStatus = when (b.chipGroupFilter.checkedChipId) {
+    private var _binding: FragmentPengaduanBinding? = null
+    private val binding get() = _binding!!
+
+    private var tabMediator: TabLayoutMediator? = null
+
+    // Properti filter yang dapat dibaca oleh setiap LaporanTabFragment anak
+    val currentQuery: String
+        get() = _binding?.etFilter?.text?.toString()?.trim() ?: ""
+
+    val currentStatus: String?
+        get() = when (_binding?.chipGroupFilter?.checkedChipId) {
             R.id.chipDiproses -> "Diproses"
             R.id.chipMenunggu -> "Menunggu"
             R.id.chipSelesai -> "Selesai"
             else -> null
         }
-        val reports = if (selectedStatus == null) {
-            all
-        } else {
-            all.filter { it.status.equals(selectedStatus, ignoreCase = true) }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentPengaduanBinding.bind(view)
+
+        // 1. Inisialisasi Adapter ViewPager2
+        val tabsAdapter = PengaduanTabsAdapter(this)
+        binding.viewPagerPengaduan.adapter = tabsAdapter
+
+        // 2. Hubungkan TabLayout & ViewPager2 dengan TabLayoutMediator
+        tabMediator = TabLayoutMediator(binding.tabLayoutPengaduan, binding.viewPagerPengaduan) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.text = "Laporan Saya"
+                    tab.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_figma_user)
+                }
+                1 -> {
+                    tab.text = "Publik"
+                    tab.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_figma_reports)
+                }
+                2 -> {
+                    tab.text = "Selesai"
+                    tab.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_check_circle)
+                }
+            }
         }
-        b.tvHeading.text = if (mine || history) "Riwayat laporan saya" else "Pengaduan masyarakat"
-        b.tvCount.text = "${reports.size} laporan"
-        b.listPengaduan.emptyView = b.tvEmpty
-        val adapter = PengaduanAdapter(reports) {
-            DetailActivity.open(requireContext(), it.id)
+        tabMediator?.attach()
+
+        // 3. Listener input pencarian & filter chip status
+        binding.etFilter.doAfterTextChanged { refreshAllTabs() }
+        binding.chipGroupFilter.setOnCheckedStateChangeListener { _, _ -> refreshAllTabs() }
+
+        // Update badge angka di tiap tab
+        updateBadges()
+    }
+
+    /**
+     * Memperbarui badge pada setiap Tab sesuai materi Pertemuan 10 Tahap 2.1
+     */
+    fun updateBadges() {
+        val b = _binding ?: return
+        val repo = PengaduanRepository(requireContext())
+        val username = (activity as? MainActivity)?.username ?: "rafli"
+
+        // Badge Tab 0: Jumlah laporan aktif milik user yang sedang login
+        val myActiveReports = repo.riwayat(username).count { !it.status.equals("Selesai", ignoreCase = true) }
+        b.tabLayoutPengaduan.getTabAt(0)?.let { tab ->
+            val badge = tab.getOrCreateBadge()
+            if (myActiveReports > 0) {
+                badge.isVisible = true
+                badge.number = myActiveReports
+                badge.backgroundColor = ContextCompat.getColor(requireContext(), R.color.primary)
+            } else {
+                badge.isVisible = false
+            }
         }
-        // MATERI-11: pasang PengaduanAdapter; layout baris item_pengaduan.xml, model Pengaduan.kt.
-        b.listPengaduan.adapter = adapter
-        b.listPengaduan.setOnItemClickListener { _, _, position, _ -> DetailActivity.open(requireContext(), reports[position].id) }
+
+        // Badge Tab 1: Total seluruh laporan pengaduan masyarakat
+        val totalReports = repo.semua().size
+        b.tabLayoutPengaduan.getTabAt(1)?.let { tab ->
+            val badge = tab.getOrCreateBadge()
+            badge.isVisible = true
+            badge.number = totalReports
+            badge.backgroundColor = ContextCompat.getColor(requireContext(), R.color.status_dalam_proses)
+        }
+
+        // Badge Tab 2: Total laporan yang sudah berhasil selesai ditangani
+        val doneReports = repo.semua().count { it.status.equals("Selesai", ignoreCase = true) }
+        b.tabLayoutPengaduan.getTabAt(2)?.let { tab ->
+            val badge = tab.getOrCreateBadge()
+            badge.isVisible = true
+            badge.number = doneReports
+            badge.backgroundColor = ContextCompat.getColor(requireContext(), R.color.status_selesai)
+        }
+    }
+
+    /**
+     * Memerintahkan semua tab fragment anak untuk memperbarui daftar RecyclerView-nya
+     */
+    fun refreshAllTabs() {
+        updateBadges()
+        childFragmentManager.fragments.forEach {
+            (it as? LaporanTabFragment)?.refreshData()
+        }
+    }
+
+    /**
+     * Navigasi langsung ke tab tertentu (dipanggil dari MainActivity / Beranda / Profil)
+     */
+    fun filter(own: Boolean) {
+        val targetIndex = if (own) 0 else 1
+        _binding?.viewPagerPengaduan?.currentItem = targetIndex
+        refreshAllTabs()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshAllTabs()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) refreshAllTabs()
+    }
+
+    override fun onDestroyView() {
+        tabMediator?.detach()
+        tabMediator = null
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -101,6 +101,13 @@ PANDUAN SALIN XML KE PROJECT BARU
                         android:textSize="12sp"
                         android:drawableStart="@drawable/ic_figma_pin"
                         android:drawablePadding="8dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOpenMap"
+                        style="@style/Widget.SiComplaint.Button.Outlined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/report_open_map" />
                     <Space
                         android:layout_width="1dp"
                         android:layout_height="8dp" />

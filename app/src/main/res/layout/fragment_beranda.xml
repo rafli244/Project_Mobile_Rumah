@@ -1,13 +1,8 @@
-<!--
-PANDUAN SALIN XML KE PROJECT BARU
-1. Contoh ListView: pasangan BerandaFragment dan ArrayAdapter.
-2. HeaderBerandaBinding ditambahkan lewat addHeaderView sebelum adapter dipasang.
-3. Jika hanya butuh daftar sederhana, gunakan ListView ini tanpa header dan gunakan position langsung.
--->
+<!-- Header Beranda diikuti satu kartu pengaduan terbaru. -->
 <ListView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/listKategori"
+    android:id="@+id/listPengaduanTerbaru"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"

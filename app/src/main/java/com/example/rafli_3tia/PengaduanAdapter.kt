@@ -59,34 +59,34 @@ class PengaduanAdapter(
             row = convertView
             holder = row.tag as ViewHolder
         }
-        // PETUNJUK: MODEL SATU BARIS: sesuaikan p.judul/dll dengan properti data class baru.
-        val p = getItem(position)
-        with(holder.binding) {
-            tvJudul.text = p.judul
-            tvKategori.text = p.kategori
-            tvLokasi.text = p.lokasi
-            tvTanggal.text = p.tanggal
-            tvStatus.text = statusLabel(p.status)
-            if (p.id == "DEMO-1" || p.kategori == "Jalan Rusak") {
-                ivLaporan.setImageResource(R.drawable.lubang)
-                ivLaporan.imageTintList = null
-                ivLaporan.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
-                ivLaporan.setPadding(0, 0, 0, 0)
-            } else {
-                ivLaporan.setImageResource(categoryIcon(p.kategori))
-                ivLaporan.imageTintList = ContextCompat.getColorStateList(parent.context, R.color.primary)
-                ivLaporan.scaleType = android.widget.ImageView.ScaleType.FIT_CENTER
-                val p16 = (16 * parent.context.resources.displayMetrics.density).toInt()
-                ivLaporan.setPadding(p16, p16, p16, p16)
-            }
-            tvStatus.setTextColor(ContextCompat.getColor(parent.context, R.color.white))
-            ivLaporan.contentDescription = "Ikon laporan ${p.kategori}"
-            btnDetail.contentDescription = "Detail ${p.judul}"
-            // PETUNJUK: CALLBACK: aksi detail disediakan pembuat adapter; jangan hardcode Activity baru tanpa kebutuhan.
-            btnDetail.setOnClickListener { onDetail(p) }
-        }
+        holder.binding.bindReport(getItem(position), onDetail)
         return row
     }
+}
+
+internal fun ItemPengaduanBinding.bindReport(p: Pengaduan, onDetail: (Pengaduan) -> Unit) {
+    tvJudul.text = p.judul
+    tvKategori.text = p.kategori
+    tvLokasi.text = p.lokasi
+    tvTanggal.text = p.tanggal
+    tvStatus.text = statusLabel(p.status)
+    tvStatus.setBackgroundResource(statusBackground(p.status))
+    if (p.id == "DEMO-1" || p.kategori == "Jalan Rusak") {
+        ivLaporan.setImageResource(R.drawable.lubang)
+        ivLaporan.imageTintList = null
+        ivLaporan.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
+        ivLaporan.setPadding(0, 0, 0, 0)
+    } else {
+        ivLaporan.setImageResource(categoryIcon(p.kategori))
+        ivLaporan.imageTintList = ContextCompat.getColorStateList(root.context, R.color.primary)
+        ivLaporan.scaleType = android.widget.ImageView.ScaleType.FIT_CENTER
+        val p16 = (16 * root.context.resources.displayMetrics.density).toInt()
+        ivLaporan.setPadding(p16, p16, p16, p16)
+    }
+    tvStatus.setTextColor(ContextCompat.getColor(root.context, R.color.white))
+    ivLaporan.contentDescription = "Ikon laporan ${p.kategori}"
+    btnDetail.contentDescription = "Detail ${p.judul}"
+    btnDetail.setOnClickListener { onDetail(p) }
 }
 
 fun statusColor(status: String) = when (status) {

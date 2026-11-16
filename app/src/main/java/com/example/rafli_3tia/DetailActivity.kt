@@ -27,7 +27,9 @@ package com.example.rafli_3tia
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -58,7 +60,15 @@ class DetailActivity : AppCompatActivity() {
         }
         b.tvKategori.text = "Kategori: ${p.kategori}"
         b.tvReportTitle.text = p.judul
-        b.tvLocation.text = p.lokasi
+        val location = p.lokasi.trim()
+        b.tvLocation.text = location.ifBlank { getString(R.string.report_location_missing) }
+        b.btnOpenMap.visibility = if (location.isBlank()) View.GONE else View.VISIBLE
+        b.btnOpenMap.setOnClickListener {
+            val mapUrl = Uri.parse("https://www.openstreetmap.org/search").buildUpon()
+                .appendQueryParameter("query", location)
+                .build()
+            WebViewActivity.open(this, mapUrl.toString(), getString(R.string.report_map_title))
+        }
         b.tvTanggal.text = "Tanggal Lapor: ${p.tanggal}"
         b.tvReportDesc.text = p.deskripsi
         b.chipStatus.text = statusLabel(p.status)

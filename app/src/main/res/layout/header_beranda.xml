@@ -1,7 +1,7 @@
 <!--
 PANDUAN SALIN XML KE PROJECT BARU
 1. Header tambahan ListView: di-inflate BerandaFragment, bukan layout Activity utama.
-2. GridLayout berisi enam kategori; salin grid lengkap dan listener category0 sampai category5.
+2. GridLayout berisi enam kategori statis.
 3. bg_header_wafe adalah vector di drawable; salin file rujukannya juga.
 4. Jika menyalin header lengkap, ikutkan id/resource dan aksi host yang digunakan Kotlin.
 -->
@@ -84,12 +84,12 @@ dilaporkan?"
             style="@style/Text.SiComplaint.Heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kategori Laporan (Grid Menu)"
+            android:text="Kategori Laporan"
             android:textSize="14sp" />
         <Space
             android:layout_width="1dp"
             android:layout_height="8dp" />
-        <!-- MATERI-15 GRIDLAYOUT: 6 tombol, 3 kolom; columnWeight membagi lebar ruang kolom. -->
+        <!-- MATERI-15 GRIDLAYOUT: 6 kategori statis, 3 kolom; columnWeight membagi lebar ruang kolom. -->
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/gridMenuKategori"
             android:layout_width="match_parent"
@@ -97,105 +97,87 @@ dilaporkan?"
             app:columnCount="3"
             app:useDefaultMargins="true">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/category0"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <TextView
+                style="@style/Text.SiComplaint.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/ic_figma_road"
+                android:drawableTint="@color/primary"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="Jalan"
                 android:textSize="11sp"
-                app:icon="@drawable/ic_figma_road"
-                app:iconGravity="top"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/gray_border"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/white"
-                android:textColor="@color/text_dark"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill_horizontal" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/category1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <TextView
+                style="@style/Text.SiComplaint.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/ic_figma_trash"
+                android:drawableTint="@color/primary"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="Sampah"
                 android:textSize="11sp"
-                app:icon="@drawable/ic_figma_trash"
-                app:iconGravity="top"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/gray_border"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/white"
-                android:textColor="@color/text_dark"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill_horizontal" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/category2"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <TextView
+                style="@style/Text.SiComplaint.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/ic_figma_lamp"
+                android:drawableTint="@color/primary"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="Lampu"
                 android:textSize="11sp"
-                app:icon="@drawable/ic_figma_lamp"
-                app:iconGravity="top"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/gray_border"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/white"
-                android:textColor="@color/text_dark"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill_horizontal" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/category3"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <TextView
+                style="@style/Text.SiComplaint.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/ic_figma_drain"
+                android:drawableTint="@color/primary"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="Drainase"
                 android:textSize="11sp"
-                app:icon="@drawable/ic_figma_drain"
-                app:iconGravity="top"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/gray_border"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/white"
-                android:textColor="@color/text_dark"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill_horizontal" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/category4"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <TextView
+                style="@style/Text.SiComplaint.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/ic_figma_facility"
+                android:drawableTint="@color/primary"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="Fasilitas"
                 android:textSize="11sp"
-                app:icon="@drawable/ic_figma_facility"
-                app:iconGravity="top"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/gray_border"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/white"
-                android:textColor="@color/text_dark"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill_horizontal" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/category5"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            <TextView
+                style="@style/Text.SiComplaint.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/ic_figma_reports"
+                android:drawableTint="@color/primary"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="Ketertiban"
                 android:textSize="11sp"
-                app:icon="@drawable/ic_figma_reports"
-                app:iconGravity="top"
-                app:iconTint="@color/primary"
-                app:strokeColor="@color/gray_border"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/white"
-                android:textColor="@color/text_dark"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill_horizontal" />
         </androidx.gridlayout.widget.GridLayout>
@@ -209,24 +191,34 @@ dilaporkan?"
             android:layout_height="52dp"
             android:text="Lihat pengaduan masyarakat" />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTutorial"
+            android:id="@+id/btnAbout"
             style="@style/Widget.SiComplaint.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
-            android:text="Panduan Aplikasi (Tutorial)"
+            android:text="@string/about_app_title"
             app:icon="@drawable/ic_info"
+            app:iconTint="@color/primary"
+            android:textColor="@color/primary" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPortalWeb"
+            style="@style/Widget.SiComplaint.Button.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:text="Portal SP4N-LAPOR!"
+            app:icon="@drawable/ic_web"
             app:iconTint="@color/primary"
             android:textColor="@color/primary" />
         <Space
             android:layout_width="1dp"
             android:layout_height="16dp" />
         <TextView
-            android:id="@+id/tvSimpleHeading"
+            android:id="@+id/tvPengaduanTerbaru"
             style="@style/Text.SiComplaint.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pilih kategori pengaduan"
+            android:text="Pengaduan Terbaru"
             android:textSize="13sp" />
     </LinearLayout>
 </LinearLayout>

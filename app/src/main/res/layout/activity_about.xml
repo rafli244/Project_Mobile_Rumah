@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarAbout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:navigationContentDescription="@string/about_app_back"
+        app:navigationIcon="@drawable/ic_figma_back"
+        app:navigationIconTint="@color/white"
+        app:title="@string/about_app_title"
+        app:titleTextColor="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_sicomplaint_logo" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="@string/app_name" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_tagline" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_overview_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_overview_body" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_categories_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_categories_body" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_create_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_create_body" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_track_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_track_body" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_navigation_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_navigation_body" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_tips_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_tips_body" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/about_storage_heading"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/Text.SiComplaint.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/about_storage_body" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

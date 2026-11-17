@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+PANDUAN SALIN XML KE PROJECT BARU | MATERI WEBVIEW (PERTEMUAN 5)
+1. Layout penampil website: MaterialToolbar + ProgressBar + WebView.
+2. AndroidManifest.xml wajib menyertakan izin <uses-permission android:name="android.permission.INTERNET" />.
+3. Pasangan Kotlin: WebViewActivity.kt dengan WebViewClient & WebChromeClient.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_app"
+    tools:context=".WebViewActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarWeb"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/primary"
+        app:title="SP4N-LAPOR!"
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/Text.SiComplaint.Heading"
+        app:subtitle="Memuat..."
+        app:subtitleTextColor="#FFEAEA"
+        app:navigationIcon="@drawable/ic_figma_back"
+        app:navigationIconTint="@color/white" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBarWeb"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:indeterminate="false"
+        android:max="100"
+        app:indicatorColor="@color/status_dalam_proses"
+        app:trackColor="@color/primary_soft"
+        android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
